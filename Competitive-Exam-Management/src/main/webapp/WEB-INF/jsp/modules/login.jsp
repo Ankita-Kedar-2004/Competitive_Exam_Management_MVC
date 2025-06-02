@@ -16,8 +16,12 @@
     }
 
     body {
-      background: url('/resources/assets/images/login_background.jpg') no-repeat center center/cover;
-      position: relative;
+      margin: 0;
+      padding: 0;
+      background-image: url('/resources/assets/images/login.jpg'); /* Adjust the path */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .overlay-dark {
@@ -26,7 +30,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-     background-color: rgba(0, 0, 0, 0.3);
+      background-color: rgba(255, 255, 255, 0.1); /* lighter overlay */
       z-index: 1;
     }
 
@@ -34,13 +38,13 @@
       position: relative;
       z-index: 2;
       max-width: 420px;
-      background-color: rgba(255, 255, 255, 0.5); /* 50% transparent */
+      background-color: rgba(255, 255, 255, 0.75); /* brighter background */
       padding: 45px 35px;
       margin: auto;
       margin-top: 5%;
       border-radius: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px); /* frosted glass effect */
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(8px);
     }
 
     .form-label {
@@ -99,7 +103,7 @@
         <label class="form-label" for="role">Role</label>
         <select id="role" name="role" class="form-control form-control-lg" required>
           <option value="">-- Select Role --</option>
-          <option value="teacher" >Teacher</option>
+          <option value="teacher">Teacher</option>
           <option value="student">Student</option>
         </select>
       </div>
