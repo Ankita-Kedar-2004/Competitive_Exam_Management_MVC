@@ -76,11 +76,11 @@
   </style>
 </head>
 <body>
-
+<!-- onsubmit="validateForm(event)" -->
   <div class="overlay-dark"></div>
 
   <div class="form-container">
-    <form id="login-form" onsubmit="validateForm(event)" action="Login" method="post">
+    <form id="login-form"  action="login" method="get">
       <div class="text-center mb-3">
         <h3 class="fw-bold">Login</h3>
       </div>
@@ -99,14 +99,7 @@
         <input type="password" id="password" name="password" class="form-control form-control-lg" required />
       </div>
 
-      <div class="form-outline mb-4">
-        <label class="form-label" for="role">Role</label>
-        <select id="role" name="role" class="form-control form-control-lg" required>
-          <option value="">-- Select Role --</option>
-          <option value="teacher">Teacher</option>
-          <option value="student">Student</option>
-        </select>
-      </div>
+      
 
       <div class="text-center">
         <button type="submit" class="btn btn-primary btn-custom">Login</button>
@@ -118,7 +111,7 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
+  <!-- <script>
     function validateForm(event) {
       const email = document.getElementById('email').value.trim();
       const password = document.getElementById('password').value.trim();
@@ -129,7 +122,7 @@
         event.preventDefault();
       }
     }
-  </script>
+  </script> -->
 
 </body>
 </html>

@@ -1,1 +1,0 @@
-# ACompetitive_Exam_Management_MVC
