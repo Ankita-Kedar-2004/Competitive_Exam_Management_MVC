@@ -87,8 +87,7 @@
 
       <select name="role" required>
         <option value="">-- Select Role --</option>
-        <option value="Teacher">Teacher</option>
-        <option value="Student">Student</option>
+       
         <option value="Admin">Admin</option>
       </select>
 
