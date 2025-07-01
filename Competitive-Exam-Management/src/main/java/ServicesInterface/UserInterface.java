@@ -1,4 +1,4 @@
-package com.competitive_exam_management.Services;
+package ServicesInterface;
 
 import javax.servlet.http.HttpSession;
 

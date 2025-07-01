@@ -14,6 +14,8 @@ import com.competitive_exam_management.Dto.UserDto;
 import com.competitive_exam_management.Dto.UserLoginDto;
 import com.competitive_exam_management.Dto.UserLoginRespDto;
 
+import ServicesInterface.UserInterface;
+
 @Service
 public class UserServicesImpl implements UserInterface {
 
