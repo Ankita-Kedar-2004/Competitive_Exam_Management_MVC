@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>Student List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -47,7 +49,6 @@
                 Student Details
             </div>
             <div class="card-body">
-                
                 <!-- Add Student button -->
                 <div class="text-end mb-3">
                     <a href="${pageContext.request.contextPath}/student_registration" class="btn btn-primary btn-sm">Add Student</a>
@@ -65,7 +66,7 @@
                                 <th>College</th>
                                 <th>Passing Year</th>
                                 <th>Exam ID</th>
-                                <th>Action</th>
+                                <th colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,16 +81,25 @@
                                     <td>${student.passingYear}</td>
                                     <td>${student.examId}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/student_update/${student.id}" class="btn btn-sm btn-primary">Update</a>
+                                        <!-- Edit Icon -->
+                                        <a href="${pageContext.request.contextPath}/student_update/${student.id}" 
+                                           class="btn btn-sm btn-warning" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/student_delete/${student.id}" class="btn btn-sm btn-primary">Delete</a>
+                                        <!-- Delete Icon -->
+                                        <a href="${pageContext.request.contextPath}/student_delete/${student.id}" 
+                                           class="btn btn-sm btn-danger" title="Delete"
+                                           onclick="return confirm('Are you sure you want to delete this student?');">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>
                             <c:if test="${empty students}">
                                 <tr>
-                                    <td colspan="9" class="no-data text-center">No student data found</td>
+                                    <td colspan="10" class="no-data text-center">No student data found</td>
                                 </tr>
                             </c:if>
                         </tbody>

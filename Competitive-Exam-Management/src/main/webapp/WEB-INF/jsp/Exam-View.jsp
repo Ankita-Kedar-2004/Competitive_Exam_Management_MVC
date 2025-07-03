@@ -6,6 +6,8 @@
     <meta charset="UTF-8">
     <title>Exam List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         body {
             background-color: #f8f9fa;
@@ -67,8 +69,11 @@
                                     <td>${exam.examId}</td>
                                     <td>${exam.examName}</td>
                                     <td>
+                                        <!-- Edit Icon -->
                                         <a href="${pageContext.request.contextPath}/updateExam/${exam.examId}" 
-                                           class="btn btn-warning btn-sm">Update</a>
+                                           class="btn btn-warning btn-sm" title="Edit">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>
