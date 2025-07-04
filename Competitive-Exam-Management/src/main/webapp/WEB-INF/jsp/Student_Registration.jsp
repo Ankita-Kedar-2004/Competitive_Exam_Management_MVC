@@ -10,7 +10,7 @@
         body {
             background-color: #f8f9fa;
              margin-left:220px;
-            margin-top:100px;
+            margin-top:70px;
         }
         .content-wrapper {
             padding: 20px;
