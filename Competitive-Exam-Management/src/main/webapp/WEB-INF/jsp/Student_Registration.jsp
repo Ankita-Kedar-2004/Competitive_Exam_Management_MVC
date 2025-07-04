@@ -99,7 +99,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-4">Save</button>
-                    <a href="${pageContext.request.contextPath}/student_view" class="btn btn-secondary px-4 ms-2">Cancel</a>
+        <button type="reset" class="btn btn-secondary">Cancel</button>
                 </div>
             </form>
         </div>

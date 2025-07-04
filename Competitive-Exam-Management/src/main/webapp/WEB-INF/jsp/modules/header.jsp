@@ -27,6 +27,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/semi-dark.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/header-colors.css"/>
     <title>Competitive Exam Management</title>
+    <style type="text/css">
+ #profile {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+#profile .user-img {
+    margin-right: 10px;
+}
+
+    </style>
 </head>
 
 <body>
@@ -43,7 +54,7 @@
                 </div>
 
                 <!-- User Box Only (settings removed) -->
-                <div class="user-box dropdown px-3">
+                <div class="user-box dropdown px-3" id="profile">
                     <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="resources/assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
                         <div class="user-info">

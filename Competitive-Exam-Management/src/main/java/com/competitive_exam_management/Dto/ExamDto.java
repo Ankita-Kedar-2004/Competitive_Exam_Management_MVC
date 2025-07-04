@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class ExamDto {
 	 private int ExamId;
  private String ExamName;
+ private int ExamDuration;
 }

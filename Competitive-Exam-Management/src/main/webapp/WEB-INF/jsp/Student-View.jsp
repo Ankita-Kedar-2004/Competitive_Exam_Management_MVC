@@ -39,6 +39,28 @@
             color: #dc3545;
             font-weight: 500;
         }
+            .custom-alert {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    z-index: 1055;
+    min-width: 320px;
+    max-width: 400px;
+    display: none;
+    align-items: center;
+    animation: slideIn 0.5s ease-out;
+}
+@keyframes slideIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
     </style>
 </head>
 <body>
@@ -109,6 +131,29 @@
         </div>
     </div>
 </div>
+<c:if test="${not empty successMsg}">
+    <div id="delayedAlert" class="alert alert-success alert-dismissible fade show custom-alert" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i> ${successMsg}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</c:if>
+
+
+<!-- JS Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    setTimeout(() => {
+        const alertBox = document.getElementById('delayedAlert');
+        if (alertBox) {
+            alertBox.style.display = 'flex';
+
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        }
+    }, 100); // 2 minutes
+</script>
 <%@ include file="modules/footer.jsp" %>
 </body>
 </html>

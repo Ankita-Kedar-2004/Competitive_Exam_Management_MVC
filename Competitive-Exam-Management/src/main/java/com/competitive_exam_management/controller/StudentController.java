@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.competitive_exam_management.Dto.StudentDto;
 import com.competitive_exam_management.Services.StudentServicesImpl;
@@ -54,20 +55,19 @@ public class StudentController {
 			return "redirect:/student_view";	    }
 	 
 	    @PostMapping("/student_save")
-	    public String registerStudent(@ModelAttribute StudentDto studentDto) {
+	    public String registerStudent(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
 	 		StudentDto success = servicesImpl.studentRegistration(studentDto);
-	 		if(success!=null) {
-	 			 return "Dashborad"; 
-	 		}
-	 	
+	 		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
 	 		return "redirect:/student_view";
 	    }
 
 
      @PostMapping("/student_update")
-     public String studentUpdateData(@ModelAttribute StudentDto studentDto) {
+     public String studentUpdateData(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
     	 System.out.println(studentDto.getId());
     	 StudentDto success = servicesImpl.studentUpdate(studentDto);
+  		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
+
     	 return "redirect:/student_view";
     	 
      }

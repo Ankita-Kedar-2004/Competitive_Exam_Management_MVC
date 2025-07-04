@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.competitive_exam_management.Dto.ExamDto;
 import com.competitive_exam_management.Dto.StudentDto;
@@ -28,12 +29,10 @@ public class ExamController {
 	}
 	
 @PostMapping("/registerExam")
-	public String registerExam(@ModelAttribute ExamDto examDto){
+	public String registerExam(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes){
 		ExamDto success = examInterface.registerExam(examDto);
- 		if(success!=null) {
- 			 return "Exam_Registration"; 
- 		}
-		return  "redirect:/Exam_View";
+ 		redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
+ 		return  "redirect:/Exam_View";
 		}
 
 @GetMapping("/updateExam/{id}")
@@ -48,13 +47,16 @@ public class ExamController {
     List<ExamDto> exam = examInterface.getAllExamName();
     
     model.addAttribute("exams", exam);
+   
+
     return "Exam-View"; 
 }
 
 @PostMapping("/exam_update")
-public String studentUpdateData(@ModelAttribute ExamDto examDto) {
+public String studentUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes) {
 	 System.out.println(examDto.getExamId());
 	 ExamDto success = examInterface.examUpdate(examDto);
+	 redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
 	 return "redirect:/Exam_View";
 	 
 }

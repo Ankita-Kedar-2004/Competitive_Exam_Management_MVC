@@ -100,7 +100,7 @@
                 <!-- Bottom action buttons -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-success px-4">Update</button>
-                    <a href="${pageContext.request.contextPath}/student_view" class="btn btn-secondary px-4 ms-2">Cancel</a>
+                    <a href="${pageContext.request.contextPath}/student_view" class="btn btn-secondary px-4 ms-2">Back</a>
                     <a href="${pageContext.request.contextPath}/student_registration" class="btn btn-primary px-4 ms-2">Add Student</a>
                 </div>
             </form>
