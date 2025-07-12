@@ -53,7 +53,7 @@ public class ExamController {
 }
 
 @PostMapping("/exam_update")
-public String studentUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes) {
+public String examUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes) {
 	 System.out.println(examDto.getExamId());
 	 ExamDto success = examInterface.examUpdate(examDto);
 	 redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");

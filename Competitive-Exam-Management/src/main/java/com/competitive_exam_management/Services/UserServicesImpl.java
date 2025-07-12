@@ -42,7 +42,7 @@ public class UserServicesImpl implements UserInterface {
     }
     
     @Override
-	public UserLoginRespDto userLoginDto(UserLoginDto userLoginDto,HttpSession session) {
+	public UserLoginRespDto userLoginDto(UserLoginDto userLoginDto) {
     	String API_URL = "http://localhost:8282/login";
     
        System.out.println(userLoginDto.getPassword());

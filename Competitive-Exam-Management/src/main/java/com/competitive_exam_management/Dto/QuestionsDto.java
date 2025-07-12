@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class QuestionsDto {
 	
-    
-
     private int questionId;
     private String questionText;
 
@@ -20,5 +18,9 @@ public class QuestionsDto {
     private String optionD;
 
     private String correctAnswer;
-   private int examId;
-   }
+    private int examId;
+    private int userId;
+  
+         
+}
+   

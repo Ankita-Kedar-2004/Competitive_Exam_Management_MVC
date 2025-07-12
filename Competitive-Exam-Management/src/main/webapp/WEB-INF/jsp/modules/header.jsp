@@ -114,16 +114,17 @@
                 </ul>
             </li>
             
-            <li>
-                <a href="#" class="has-arrow">
-                    <div class="parent-icon"><i class='bx bx-user'></i></div>
-                    <div class="menu-title">Questions</div>
-                </a>
-                <ul>
-                    <li><a href="registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
-                    <li><a href="student_view"><i class='bx bx-radio-circle'></i>Questions View</a></li>
-                </ul>
-            </li>
+           <li>
+    <a href="#" class="has-arrow">
+        <div class="parent-icon"><i class='bx bx-help-circle'></i></div> <!-- Updated icon here -->
+        <div class="menu-title">Questions</div>
+    </a>
+    <ul>
+        <li><a href="registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
+        <li><a href="viewQuestions"><i class='bx bx-radio-circle'></i>Questions View</a></li>
+    </ul>
+</li>
+
         </ul>
         <!--end navigation-->
     </div>
