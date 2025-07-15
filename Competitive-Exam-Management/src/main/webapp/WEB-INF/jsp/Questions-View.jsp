@@ -61,6 +61,27 @@
             from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+        input::placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.75rem;
+}
+
+.btn-success {
+    background-color: #198754;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+}
     </style>
 </head>
 <body>
@@ -71,15 +92,28 @@
                 Questions List
             </div>
             <div class="card-body">
-              
-                <div class="d-flex justify-content-between mb-3">
-    <input type="text" id="questionSearch" class="form-control form-control-sm w-50" placeholder="Search question...">
-    <a href="${pageContext.request.contextPath}/registerQuestions" class="btn btn-primary btn-sm">Add Question</a>
-</div>
-                
-              
+            <div class="row mb-4 align-items-center">
+    <div class="col-md-5">
+        <input type="text" id="questionSearch" class="form-control shadow-sm" placeholder=" Search question..." />
+    </div>
 
-                <div class="table-responsive">
+    <div class="col-md-4">
+        <select name="examName" class="form-select shadow-sm">
+            <option value="">-- Select Exam --</option>
+            <c:forEach var="name" items="${examNames}">
+                <option value="${name}">${name}</option>
+            </c:forEach>
+        </select>
+    </div>
+
+    <div class="col-md-3 text-end">
+        <a href="${pageContext.request.contextPath}/question/registerQuestions" class="btn btn-sm btn-success shadow-sm">
+            <i class="bi bi-plus-circle me-1"></i> Add Question
+        </a>
+    </div>
+</div>
+
+                  <div class="table-responsive">
                     <table class="table table-bordered table-hover text-center align-middle">
                         <thead class="table-light">
                             <tr>
@@ -90,7 +124,7 @@
                                 <th>Option C</th>
                                 <th>Option D</th>
                                 <th>Correct Answer</th>
-                                <th>Exam ID</th>
+                                <th>Exam Name</th>
                                 <th colspan="2">Action</th>
                             </tr>
                         </thead>
@@ -104,15 +138,15 @@
                                     <td>${question.optionC}</td>
                                     <td>${question.optionD}</td>
                                     <td>${question.correctAnswer}</td>
-                                    <td>${question.examId}</td>
+                                    <td>${question.examName}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/updateQuestions/${question.questionId}" 
+                                        <a href="${pageContext.request.contextPath}/question/updateQuestions/${question.questionId}" 
                                            class="btn btn-sm btn-warning" title="Edit">
                                             <i class="bi bi-pencil-square"></i>
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/question_delete/${question.questionId}" 
+                                        <a href="${pageContext.request.contextPath}/question/deleteQuestions/${question.questionId}" 
                                            class="btn btn-sm btn-danger" title="Delete"
                                            onclick="return confirm('Are you sure you want to delete this question?');">
                                             <i class="bi bi-trash"></i>
@@ -154,19 +188,32 @@
         }
     }, 100);
     
-    document.getElementById('questionSearch').addEventListener('keyup', function () {
-        const searchValue = this.value.toLowerCase();
-        const rows = document.querySelectorAll("table tbody tr");
+    const searchInput = document.getElementById('questionSearch');
+    const examFilter = document.querySelector('select[name="examName"]');
+    const tableRows = document.querySelectorAll("table tbody tr");
 
-        rows.forEach(row => {
+    
+    function filterQuestions() {
+        const searchValue = searchInput.value.toLowerCase();
+        const selectedExam = examFilter.value.toLowerCase();
+
+        tableRows.forEach(row => {
             const rowText = row.innerText.toLowerCase();
-            if (rowText.includes(searchValue)) {
+            const examCell = row.cells[7].innerText.toLowerCase(); 
+            const matchesSearch = rowText.includes(searchValue);
+            const matchesExam = selectedExam === "" || examCell === selectedExam;
+
+            if (matchesSearch && matchesExam) {
                 row.style.display = "";
             } else {
                 row.style.display = "none";
             }
         });
-    });
+    }
+
+   
+    searchInput.addEventListener('keyup', filterQuestions);
+    examFilter.addEventListener('change', filterQuestions);
 
 </script>
 <%@ include file="modules/footer.jsp" %>

@@ -37,7 +37,7 @@
     <div class="card">
         <div class="card-header">Add Question Details</div>
         <div class="card-body">
-            <form action="registerQuestionsData" method="post">
+            <form action="/question/registerQuestionsData" method="post">
                 <div class="row mb-3">
                     <label>Question Text</label>
                     <input type="text" name="questionText" class="form-control" required />

@@ -45,17 +45,13 @@ public class ExamController {
 @GetMapping("/Exam_View")
     public String viewExams(Model model) {
     List<ExamDto> exam = examInterface.getAllExamName();
-    
     model.addAttribute("exams", exam);
-   
-
-    return "Exam-View"; 
+  return "Exam-View"; 
 }
 
 @PostMapping("/exam_update")
 public String examUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes) {
-	 System.out.println(examDto.getExamId());
-	 ExamDto success = examInterface.examUpdate(examDto);
+     ExamDto success = examInterface.examUpdate(examDto);
 	 redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
 	 return "redirect:/Exam_View";
 	 

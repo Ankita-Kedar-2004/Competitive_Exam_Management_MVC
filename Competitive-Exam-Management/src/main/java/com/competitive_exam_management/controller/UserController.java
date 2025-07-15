@@ -36,8 +36,6 @@ public class UserController {
     
   @GetMapping("/login")
 public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession session) {
-	  
-    System.out.println(userLoginDto.getEmail());
 		UserLoginRespDto success = servicesImpl.userLoginDto(userLoginDto);
 		if(success!=null) {
 			String userId=String.valueOf(success.getId());
@@ -68,7 +66,5 @@ public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession s
  @GetMapping("/sign_up")
  public String signup(){
 	return "sign_up";
-	 
-	 
- }
+	 }
 }

@@ -120,8 +120,8 @@
         <div class="menu-title">Questions</div>
     </a>
     <ul>
-        <li><a href="registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
-        <li><a href="viewQuestions"><i class='bx bx-radio-circle'></i>Questions View</a></li>
+        <li><a href="/question/registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
+        <li><a href="/question/viewQuestions"><i class='bx bx-radio-circle'></i>Questions View</a></li>
     </ul>
 </li>
 
