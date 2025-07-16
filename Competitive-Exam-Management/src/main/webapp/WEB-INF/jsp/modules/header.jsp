@@ -113,6 +113,18 @@
                     <li><a href="Exam_View"><i class='bx bx-radio-circle'></i>Exam View</a></li>
                 </ul>
             </li>
+            
+           <li>
+    <a href="#" class="has-arrow">
+        <div class="parent-icon"><i class='bx bx-help-circle'></i></div> <!-- Updated icon here -->
+        <div class="menu-title">Questions</div>
+    </a>
+    <ul>
+        <li><a href="/question/registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
+        <li><a href="/question/viewQuestions"><i class='bx bx-radio-circle'></i>Questions View</a></li>
+    </ul>
+</li>
+
         </ul>
         <!--end navigation-->
     </div>

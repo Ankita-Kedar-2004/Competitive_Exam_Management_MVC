@@ -42,7 +42,6 @@ public class StudentController {
 	    
 		@GetMapping("/student_update/{id}")
 		public String studentUpdate(@PathVariable int id, Model model) {
-			System.out.println("id is ..... "+id);
 			StudentDto student = servicesImpl.getStudentById(id);
 		    model.addAttribute("student", student);
             return "Student-Update"; 
@@ -50,7 +49,6 @@ public class StudentController {
 		
 		@GetMapping("/student_delete/{id}")
 		public String studentDelete(@PathVariable int id) {
-			System.out.println("id is ..... "+id);
 			StudentDto student = servicesImpl.deleteStudentById(id);
 			return "redirect:/student_view";	    }
 	 
@@ -64,11 +62,9 @@ public class StudentController {
 
      @PostMapping("/student_update")
      public String studentUpdateData(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
-    	 System.out.println(studentDto.getId());
     	 StudentDto success = servicesImpl.studentUpdate(studentDto);
   		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
-
-    	 return "redirect:/student_view";
+	 return "redirect:/student_view";
     	 
      }
      }

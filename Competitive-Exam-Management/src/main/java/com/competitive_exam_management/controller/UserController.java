@@ -36,14 +36,15 @@ public class UserController {
     
   @GetMapping("/login")
 public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession session) {
-	  
-    System.out.println(userLoginDto.getEmail());
-		UserLoginRespDto success = servicesImpl.userLoginDto(userLoginDto, session);
+		UserLoginRespDto success = servicesImpl.userLoginDto(userLoginDto);
 		if(success!=null) {
-			  session.setAttribute("user", success);
-                UserLoginRespDto storedUser = (UserLoginRespDto) session.getAttribute("user");
-		        System.out.println("Session user: " + storedUser.getEmail() + ", Role: " + storedUser.getRole());
-	       return "Dashborad"; 
+			String userId=String.valueOf(success.getId());
+			String userEmail=success.getEmail();
+			String userRole=success.getRole();
+			session.setAttribute("userId", userId);
+			session.setAttribute("useremail", userEmail);
+			session.setAttribute("userRole", userRole);
+                return "Dashborad"; 
 		}
 		return "login";
 		
@@ -54,8 +55,6 @@ public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession s
  
  @RequestMapping("/Sign_up")
  public String user(@ModelAttribute UserDto userDto) {
- 	
- 	
  	String success = servicesImpl.userDto(userDto);
  	    
  	    if (success != null) {
@@ -67,7 +66,5 @@ public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession s
  @GetMapping("/sign_up")
  public String signup(){
 	return "sign_up";
-	 
-	 
- }
+	 }
 }

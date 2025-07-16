@@ -12,7 +12,8 @@ public interface UserInterface {
 	
 
 	String userDto(UserDto userDto);
-	UserLoginRespDto userLoginDto(UserLoginDto userLoginDto, HttpSession session);
+	
+	UserLoginRespDto userLoginDto(UserLoginDto userLoginDto);
 	
 
 }
