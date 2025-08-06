@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.competitive_exam_management.Dto.ExamDto;
@@ -16,6 +17,7 @@ import com.competitive_exam_management.Dto.StudentDto;
 
 import ServicesInterface.ExamInterface;
 
+@RequestMapping("/exam")
 @Controller
 public class ExamController {
 	@Autowired
@@ -32,7 +34,7 @@ public class ExamController {
 	public String registerExam(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes){
 		ExamDto success = examInterface.registerExam(examDto);
  		redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
- 		return  "redirect:/Exam_View";
+ 		return  "redirect:/exam/Exam_View";
 		}
 
 @GetMapping("/updateExam/{id}")
@@ -53,7 +55,13 @@ public class ExamController {
 public String examUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes) {
      ExamDto success = examInterface.examUpdate(examDto);
 	 redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
-	 return "redirect:/Exam_View";
+	 return "redirect:/exam/Exam_View";
 	 
 }
+
+@GetMapping("/exam_delete/{id}")
+public String studentDelete(@PathVariable int id) {
+	examInterface.deleteExamById(id);
+	return "redirect:/exam/Exam_View";	   
+	}
 }

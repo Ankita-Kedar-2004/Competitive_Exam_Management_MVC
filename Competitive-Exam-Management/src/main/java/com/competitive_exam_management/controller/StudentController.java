@@ -1,7 +1,9 @@
 package com.competitive_exam_management.controller;
 
 import java.time.Year;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.competitive_exam_management.Dto.StudentDto;
 import com.competitive_exam_management.Services.StudentServicesImpl;
 
+@RequestMapping("/student")
 @Controller
 
 public class StudentController {
@@ -33,8 +36,8 @@ public class StudentController {
 	
 
 	    @GetMapping("/student_view")
-	    public String viewStudents(Model model) {
-	        List<StudentDto> students = servicesImpl.getAllStudents();
+	    public String viewStudents( Model model) {
+	    	List<StudentDto> students = servicesImpl.getAllStudents();
 	        model.addAttribute("students", students);
 	        return "Student-View"; 
 	    }
@@ -49,14 +52,15 @@ public class StudentController {
 		
 		@GetMapping("/student_delete/{id}")
 		public String studentDelete(@PathVariable int id) {
-			StudentDto student = servicesImpl.deleteStudentById(id);
-			return "redirect:/student_view";	    }
+			servicesImpl.deleteStudentById(id);
+			return "redirect:/student/student_view";	   
+			}
 	 
 	    @PostMapping("/student_save")
 	    public String registerStudent(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
 	 		StudentDto success = servicesImpl.studentRegistration(studentDto);
 	 		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
-	 		return "redirect:/student_view";
+	 		return "redirect:/student/student_view";
 	    }
 
 
@@ -64,7 +68,7 @@ public class StudentController {
      public String studentUpdateData(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
     	 StudentDto success = servicesImpl.studentUpdate(studentDto);
   		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
-	 return "redirect:/student_view";
+	 return "redirect:/student/student_view";
     	 
      }
      }

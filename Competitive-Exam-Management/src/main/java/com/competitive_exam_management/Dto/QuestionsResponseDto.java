@@ -20,6 +20,7 @@ public class QuestionsResponseDto {
 
 		    private int examId;
 		    private String examName;
+		   
 		 
 	}
 

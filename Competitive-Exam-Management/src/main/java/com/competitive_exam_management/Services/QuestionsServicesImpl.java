@@ -65,7 +65,6 @@ public class QuestionsServicesImpl implements QuestionsInterface{
 	@Override
 	public QuestionsResponseDto updateQuestions(int id) {
 		String API_URL = "http://localhost:8282/questions_update/"+id;
-	    System.out.println(id);
 			 RestTemplate restTemplate = new RestTemplate();
 			    
 			    try {
@@ -116,8 +115,6 @@ public class QuestionsServicesImpl implements QuestionsInterface{
 	@Override
 	public boolean deleteQuestions(int id) {
 String API_URL = "http://localhost:8282/questions_delete/"+id;
-		
-	    System.out.println(id);
 			 RestTemplate restTemplate = new RestTemplate();
 			    
 			    try {

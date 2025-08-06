@@ -48,7 +48,7 @@
         </div>
 
         <div class="card-body">
-            <form action="${pageContext.request.contextPath}/exam_update" method="post">
+            <form action="${pageContext.request.contextPath}/exam/exam_update" method="post">
                 <!-- Hidden input for examId -->
                 <input type="hidden" name="examId" value="${exam.examId}" />
 
@@ -68,8 +68,8 @@
                 <!-- Action Buttons -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-success px-4">Update</button>
-                    <a href="${pageContext.request.contextPath}/Exam_View" class="btn btn-secondary px-4 ms-2">Back</a>
-                    <a href="${pageContext.request.contextPath}/addExam" class="btn btn-primary px-4 ms-2">Add New Exam</a>
+                    <a href="${pageContext.request.contextPath}/exam/Exam_View" class="btn btn-secondary px-4 ms-2">Back</a>
+                    <a href="${pageContext.request.contextPath}/exam/addExam" class="btn btn-primary px-4 ms-2">Add New Exam</a>
                 </div>
             </form>
         </div>

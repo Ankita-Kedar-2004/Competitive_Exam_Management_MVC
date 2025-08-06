@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-6">
                         <label>Exam ID</label>
-                        <input type="number" name="examId" class="form-control" required />
+                         <input type="number" name="examId" class="form-control" required readonly value="${examId}" />
                     </div>
                 </div>
 
