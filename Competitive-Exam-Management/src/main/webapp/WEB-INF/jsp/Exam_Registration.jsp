@@ -6,7 +6,7 @@
             <h4 class="mb-0">Add Exam</h4>
         </div>
         <div class="card-body">
-           <form action="registerExam" method="post">
+           <form action="/exam/registerExam" method="post">
     <div class="mb-3 row">
         <label for="examName" class="col-sm-4 col-form-label text-end">Exam Name</label>
         <div class="col-sm-8">

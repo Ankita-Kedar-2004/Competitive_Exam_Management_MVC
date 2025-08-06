@@ -99,8 +99,8 @@
                     <div class="menu-title">Student</div>
                 </a>
                 <ul>
-                    <li><a href="student_registration"><i class='bx bx-radio-circle'></i>Student Registration</a></li>
-                    <li><a href="student_view"><i class='bx bx-radio-circle'></i>Student View</a></li>
+                    <li><a href="/student/student_registration"><i class='bx bx-radio-circle'></i>Student Registration</a></li>
+                    <li><a href="/student/student_view""><i class='bx bx-radio-circle'></i>Student View</a></li>
                 </ul>
             </li>
             <li>
@@ -109,8 +109,8 @@
                     <div class="menu-title">Exam</div>
                 </a>
                 <ul>
-                    <li><a href="addExam"><i class='bx bx-radio-circle'></i>Exam Registration</a></li>
-                    <li><a href="Exam_View"><i class='bx bx-radio-circle'></i>Exam View</a></li>
+                    <li><a href="/exam/addExam"><i class='bx bx-radio-circle'></i>Exam Registration</a></li>
+                    <li><a href="${pageContext.request.contextPath}/exam/Exam_View"><i class='bx bx-radio-circle'></i>Exam View</a></li>
                 </ul>
             </li>
             

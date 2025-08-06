@@ -24,7 +24,6 @@ public class UserServicesImpl implements UserInterface {
     public String userDto(UserDto userDto) {
     	String API_URL = "http://localhost:8282/Sign_up";
 
-    	System.out.println(userDto.getEmail());
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
@@ -44,8 +43,6 @@ public class UserServicesImpl implements UserInterface {
     @Override
 	public UserLoginRespDto userLoginDto(UserLoginDto userLoginDto) {
     	String API_URL = "http://localhost:8282/login";
-    
-       System.out.println(userLoginDto.getPassword());
 		 RestTemplate restTemplate = new RestTemplate();
 
 	        HttpHeaders headers = new HttpHeaders();
