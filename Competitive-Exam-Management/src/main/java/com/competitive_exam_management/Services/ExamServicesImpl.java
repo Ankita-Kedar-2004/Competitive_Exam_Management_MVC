@@ -19,7 +19,7 @@ public class ExamServicesImpl implements ExamInterface{
 
 	@Override
 	public ExamDto registerExam(ExamDto examDto) {
-		String API_URL = "http://localhost:8282/registerExam";
+		String API_URL = "http://localhost:8282/exam/registerExam";
 		System.out.println(examDto.getExamName());
 	 
 			 RestTemplate restTemplate = new RestTemplate();
@@ -45,7 +45,7 @@ public class ExamServicesImpl implements ExamInterface{
 
 	@Override
 	public List<ExamDto> getAllExamName() {
-		String API_URL = "http://localhost:8282/Exam_view";
+		String API_URL = "http://localhost:8282/exam/Exam_view";
 		 RestTemplate restTemplate = new RestTemplate();
 
 	        HttpHeaders headers = new HttpHeaders();
@@ -56,7 +56,7 @@ public class ExamServicesImpl implements ExamInterface{
 
 	@Override
 	public ExamDto updateExam(int id) {
-		String API_URL = "http://localhost:8282/exam_update/"+id;
+		String API_URL = "http://localhost:8282/exam/exam_update/"+id;
 	    System.out.println(id);
 			 RestTemplate restTemplate = new RestTemplate();
 			    
@@ -72,7 +72,7 @@ public class ExamServicesImpl implements ExamInterface{
 	
 	@Override
 	public ExamDto examUpdate(ExamDto examDto) {
-		String API_URL = "http://localhost:8282/exam_update";
+		String API_URL = "http://localhost:8282/exam/exam_update";
 		   
 		 RestTemplate restTemplate = new RestTemplate();
 

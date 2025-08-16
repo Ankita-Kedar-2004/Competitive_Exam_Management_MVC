@@ -20,7 +20,7 @@ import com.competitive_exam_management.Dto.StudentDto;
 import com.competitive_exam_management.Services.StudentServicesImpl;
 
 @Controller
-
+@RequestMapping("/student")
 public class StudentController {
 	
 	@Autowired

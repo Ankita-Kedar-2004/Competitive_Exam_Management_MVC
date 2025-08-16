@@ -22,7 +22,7 @@ public class StudentServicesImpl implements StudentInterface {
 
 
 	public StudentDto studentRegistration(StudentDto studentDto) {
-	String API_URL = "http://localhost:8282/student_registration_data";
+	String API_URL = "http://localhost:8282/student/student_registration_data";
     System.out.println(studentDto.getPassword());
 		 RestTemplate restTemplate = new RestTemplate();
 
@@ -49,7 +49,7 @@ public class StudentServicesImpl implements StudentInterface {
 		
 	@Override
     public List<StudentDto> getAllStudents() {
-		String API_URL = "http://localhost:8282/student_view";
+		String API_URL = "http://localhost:8282/student/student_view";
 		 RestTemplate restTemplate = new RestTemplate();
 
 	        HttpHeaders headers = new HttpHeaders();
@@ -60,7 +60,7 @@ public class StudentServicesImpl implements StudentInterface {
 
     @Override
 	public StudentDto getStudentById(int id) {
-		String API_URL = "http://localhost:8282/student_update/"+id;
+		String API_URL = "http://localhost:8282/student/student_update/"+id;
 	    System.out.println(id);
 			 RestTemplate restTemplate = new RestTemplate();
 			    
@@ -75,7 +75,7 @@ public class StudentServicesImpl implements StudentInterface {
 
 
 	public StudentDto studentUpdate(StudentDto studentDto) {
-		String API_URL = "http://localhost:8282/student_update";
+		String API_URL = "http://localhost:8282/student/student_update";
 	   
 			 RestTemplate restTemplate = new RestTemplate();
 
@@ -101,7 +101,7 @@ public class StudentServicesImpl implements StudentInterface {
 
 @Override
 	public StudentDto deleteStudentById(int id) {
-		String API_URL = "http://localhost:8282/student_delete/"+id;
+		String API_URL = "http://localhost:8282/student/student_delete/"+id;
 		
 	    System.out.println(id);
 			 RestTemplate restTemplate = new RestTemplate();
