@@ -28,15 +28,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/header-colors.css"/>
     <title>Competitive Exam Management</title>
     <style type="text/css">
- #profile {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-}
-#profile .user-img {
-    margin-right: 10px;
-}
-
+        #profile {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        #profile .user-img {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -56,7 +55,7 @@
                 <!-- User Box Only (settings removed) -->
                 <div class="user-box dropdown px-3" id="profile">
                     <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="resources/assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+                        <img src="${pageContext.request.contextPath}/resources/assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
                         <div class="user-info">
                             <p class="user-name mb-0">Pauline Seitz</p>
                             <p class="designattion mb-0">Web Designer</p>
@@ -88,7 +87,7 @@
         <!--navigation-->
         <ul class="metismenu" id="menu">
             <li>
-                <a href="dashborad" class="has-arrow">
+                <a href="dashboard" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-home-alt'></i></div>
                     <div class="menu-title">Dashboard</div>
                 </a>
@@ -99,8 +98,8 @@
                     <div class="menu-title">Student</div>
                 </a>
                 <ul>
-                    <li><a href="/student/student_registration"><i class='bx bx-radio-circle'></i>Student Registration</a></li>
-                    <li><a href="/student/student_view"><i class='bx bx-radio-circle'></i>Student View</a></li>
+                    <li><a href="${pageContext.request.contextPath}/student/student_registration"><i class='bx bx-radio-circle'></i>Student Registration</a></li>
+                    <li><a href="${pageContext.request.contextPath}/student/student_view"><i class='bx bx-radio-circle'></i>Student View</a></li>
                 </ul>
             </li>
             <li>
@@ -109,23 +108,21 @@
                     <div class="menu-title">Exam</div>
                 </a>
                 <ul>
-                    <li><a href="/exam/addExam"><i class='bx bx-radio-circle'></i>Exam Registration</a></li>
-                    <li><a href="/exam/Exam_View"><i class='bx bx-radio-circle'></i>Exam View</a></li>
-                    <li><a href="/assignQuestions/assignQuestionspage"><i class='bx bx-radio-circle'></i> Start Exam </a></li>
+                    <li><a href="${pageContext.request.contextPath}/exam/addExam"><i class='bx bx-radio-circle'></i>Exam Registration</a></li>
+                    <li><a href="${pageContext.request.contextPath}/exam/Exam_View"><i class='bx bx-radio-circle'></i>Exam View</a></li>
+                    <li><a href="${pageContext.request.contextPath}/assignQuestions/assignQuestionspage"><i class='bx bx-radio-circle'></i>Start Exam</a></li>
                 </ul>
             </li>
-            
-           <li>
-    <a href="#" class="has-arrow">
-        <div class="parent-icon"><i class='bx bx-help-circle'></i></div> <!-- Updated icon here -->
-        <div class="menu-title">Questions</div>
-    </a>
-    <ul>
-        <li><a href="/question/registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
-        <li><a href="/question/viewQuestions"><i class='bx bx-radio-circle'></i>Questions View</a></li>
-    </ul>
-</li>
-
+            <li>
+                <a href="#" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-help-circle'></i></div>
+                    <div class="menu-title">Questions</div>
+                </a>
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/question/registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
+                    <li><a href="${pageContext.request.contextPath}/question/viewQuestions"><i class='bx bx-radio-circle'></i>Questions View</a></li>
+                </ul>
+            </li>
         </ul>
         <!--end navigation-->
     </div>

@@ -48,7 +48,7 @@
             Add Student Details
         </div>
         <div class="card-body">
-            <form action="${pageContext.request.contextPath}/student_save" method="post">
+            <form action="${pageContext.request.contextPath}/student/student_save" method="post">
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Name</label>
@@ -96,6 +96,9 @@
                         <label class="form-label">Exam ID</label>
                         <input type="text" name="examId" class="form-control">
                     </div>
+                    
+     
+
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-4">Save</button>

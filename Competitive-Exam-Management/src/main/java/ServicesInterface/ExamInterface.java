@@ -17,5 +17,7 @@ public interface ExamInterface {
 	ExamDto updateExam(int id);
 
 	ExamDto examUpdate(ExamDto examDto);
+	
+	int deleteExamById(int id);
 
 }

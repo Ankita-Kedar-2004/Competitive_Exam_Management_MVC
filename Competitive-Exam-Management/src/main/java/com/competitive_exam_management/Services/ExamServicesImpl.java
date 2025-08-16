@@ -95,4 +95,19 @@ public class ExamServicesImpl implements ExamInterface{
 			return null;
 	}
 
+	@Override
+	public int deleteExamById(int id) {
+		String API_URL = "http://localhost:8282/exam/exam_delete/"+id;
+			 RestTemplate restTemplate = new RestTemplate();
+			    
+			    try {
+			        int response = restTemplate.getForObject(API_URL, Integer.class);
+			        return response;
+			    } catch (Exception e) {
+			        System.err.println("Error calling API: " + e.getMessage());
+			        return 0;
+			    }
+	        
+	}
+
 }

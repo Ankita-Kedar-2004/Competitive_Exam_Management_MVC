@@ -11,4 +11,5 @@ public class ExamDto {
 	 private int ExamId;
  private String ExamName;
  private int ExamDuration;
+ private String status;
 }

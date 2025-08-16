@@ -18,5 +18,6 @@ public class StudentDto {
 	    private int passingYear;
 	    private String collegeName;
 	    private int examId;
+	    private String status;
 
 }

@@ -12,13 +12,13 @@ import com.competitive_exam_management.Dto.StudentDto;
 public interface StudentInterface {
 	
 	public StudentDto studentRegistration(StudentDto studentDto);
-	
-	 public List<StudentDto> getAllStudents() ;
 	 
 	 public StudentDto getStudentById(int id);
 	 
 	 public StudentDto studentUpdate(StudentDto studentDto) ;
 	 
-	 public StudentDto deleteStudentById(int id);
+	 public int deleteStudentById(int id);
+
+	List<StudentDto> getAllStudents();
 
 }
