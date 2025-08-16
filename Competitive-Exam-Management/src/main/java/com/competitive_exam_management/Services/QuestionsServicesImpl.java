@@ -18,113 +18,94 @@ import com.competitive_exam_management.Dto.StudentDto;
 
 import ServicesInterface.QuestionsInterface;
 
-
 @Service
-public class QuestionsServicesImpl implements QuestionsInterface{
+public class QuestionsServicesImpl implements QuestionsInterface {
 
-	@Override
-	public QuestionsDto registerQuestions(QuestionsDto questionsDto) {
-		String API_URL = "http://localhost:8282/registerQuestions";
-		
-	        RestTemplate restTemplate = new RestTemplate();
+    @Override
+    public QuestionsDto registerQuestions(QuestionsDto questionsDto) {
+        String API_URL = "http://localhost:8282/registerQuestions";
+        RestTemplate restTemplate = new RestTemplate();
 
-		        HttpHeaders headers = new HttpHeaders();
-		        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-		        HttpEntity<QuestionsDto> request = new HttpEntity<>(questionsDto, headers);
-		         try {
-		       
-		        	QuestionsDto response = restTemplate.postForObject(API_URL, request, QuestionsDto.class);
-		        	if(response!=null) {
-		            return response;
-		        	}
-		        	  }
-		         catch (Exception e) {
-		 	        e.printStackTrace();
-		 	    }
-		return null;
-		
-	}
+        HttpEntity<QuestionsDto> request = new HttpEntity<>(questionsDto, headers);
+        try {
+            QuestionsDto response = restTemplate.postForObject(API_URL, request, QuestionsDto.class);
+            if (response != null) {
+                return response;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	
-	
-	@Override
-	public List<QuestionsResponseDto> getAllQuestions() {
-		String API_URL = "http://localhost:8282/viewQuestions";
-		 RestTemplate restTemplate = new RestTemplate();
+    @Override
+    public List<QuestionsResponseDto> getAllQuestions() {
+        String API_URL = "http://localhost:8282/viewQuestions";
+        RestTemplate restTemplate = new RestTemplate();
 
-	        HttpHeaders headers = new HttpHeaders();
-	        headers.setContentType(MediaType.APPLICATION_JSON);
-	        QuestionsResponseDto[] response = restTemplate.getForObject(API_URL, QuestionsResponseDto[].class);
-      return Arrays.asList(response);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-	}
+        QuestionsResponseDto[] response = restTemplate.getForObject(API_URL, QuestionsResponseDto[].class);
+        return Arrays.asList(response);
+    }
 
+    @Override
+    public QuestionsResponseDto updateQuestions(int id) {
+        String API_URL = "http://localhost:8282/questions_update/" + id;
+        RestTemplate restTemplate = new RestTemplate();
 
+        try {
+            QuestionsResponseDto response = restTemplate.getForObject(API_URL, QuestionsResponseDto.class);
+            return response;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-	@Override
-	public QuestionsResponseDto updateQuestions(int id) {
-		String API_URL = "http://localhost:8282/questions_update/"+id;
-			 RestTemplate restTemplate = new RestTemplate();
-			    
-			    try {
-			    	QuestionsResponseDto response = restTemplate.getForObject(API_URL, QuestionsResponseDto.class);
-			        return response;
-			    } catch (Exception e) {
-			        e.printStackTrace();
-			    }
-				return null;
-	}
+    @Override
+    public ResponseEntity<QuestionsDto> questionsUpdate(QuestionsDto questionsDto) {
+        String API_URL = "http://localhost:8282/questions_update_data1";
+        RestTemplate restTemplate = new RestTemplate();
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
+        HttpEntity<QuestionsDto> request = new HttpEntity<>(questionsDto, headers);
 
-	
-	@Override
-	public ResponseEntity<QuestionsDto> questionsUpdate(QuestionsDto questionsDto) {
+        try {
+            ResponseEntity<QuestionsDto> response = restTemplate.exchange(
+                    API_URL,
+                    HttpMethod.POST,
+                    request,
+                    QuestionsDto.class
+            );
 
-	    String API_URL = "http://localhost:8282/questions_update_data1";
+            if (response != null) {
+                return response;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	    RestTemplate restTemplate = new RestTemplate();
+        return null;
+    }
 
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.setContentType(MediaType.APPLICATION_JSON);
+    @Override
+    public boolean deleteQuestions(int id) {
+        String API_URL = "http://localhost:8282/questions_delete/" + id;
+        RestTemplate restTemplate = new RestTemplate();
 
-	    HttpEntity<QuestionsDto> request = new HttpEntity<>(questionsDto, headers);
-
-	    try {
-	    	ResponseEntity<QuestionsDto> response = restTemplate.exchange(
-	    		    API_URL,
-	    		    HttpMethod.POST,
-	    		    request,
-	    		    QuestionsDto.class
-	    		);
-
-
-	        if (response != null) {
-	            return response;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-
-	    return null;
-	}
-
-
-
-	@Override
-	public boolean deleteQuestions(int id) {
-String API_URL = "http://localhost:8282/questions_delete/"+id;
-			 RestTemplate restTemplate = new RestTemplate();
-			    
-			    try {
-			        boolean response = restTemplate.getForObject(API_URL, boolean.class);
-			        return response;
-			    } catch (Exception e) {
-			        System.err.println("Error calling API: " + e.getMessage());
-			       
-			    }
-		return false;
-	}
-
+        try {
+            boolean response = restTemplate.getForObject(API_URL, boolean.class);
+            return response;
+        } catch (Exception e) {
+            System.err.println("Error calling API: " + e.getMessage());
+        }
+        return false;
+    }
 }

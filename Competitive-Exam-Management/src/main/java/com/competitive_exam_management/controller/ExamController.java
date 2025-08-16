@@ -19,6 +19,7 @@ import ServicesInterface.ExamInterface;
 
 @RequestMapping("/exam")
 @Controller
+@RequestMapping("/exam")
 public class ExamController {
 	@Autowired
 	ExamInterface examInterface;

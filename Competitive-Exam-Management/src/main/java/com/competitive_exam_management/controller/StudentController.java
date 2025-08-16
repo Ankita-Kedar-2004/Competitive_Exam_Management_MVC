@@ -23,7 +23,7 @@ import com.competitive_exam_management.Services.StudentServicesImpl;
 
 @RequestMapping("/student")
 @Controller
-
+@RequestMapping("/student")
 public class StudentController {
 	
 	@Autowired
