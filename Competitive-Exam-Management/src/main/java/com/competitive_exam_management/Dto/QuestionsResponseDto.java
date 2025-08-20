@@ -22,6 +22,10 @@ public class QuestionsResponseDto {
 		    private String examName;
 		   
 		 
+		    
+		    private String userAnswer;
+		    
+		    private String studentAnswer;
 	}
 
 

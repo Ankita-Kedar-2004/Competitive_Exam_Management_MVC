@@ -9,8 +9,9 @@
     <style>
         body {
             background-color: #f8f9fa;
-            margin-left: 220px;
+            margin-left: 250px;
             margin-top: 100px;
+            padding-bottom: 50px;
         }
         .question-card {
             margin-bottom: 20px;
@@ -36,7 +37,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/submitExam" method="post">
+    <form action="${pageContext.request.contextPath}/result/submitExam" method="post">
         <input type="hidden" name="studentId" value="${studentId}">
         <input type="hidden" name="examId" value="${examId}">
         
@@ -44,7 +45,7 @@
             <div class="card question-card">
                 <div class="card-header question-header">
                     <h5>Question ${loop.index + 1}</h5>
-                    <p>${question.questionText}</p>
+                    <p><c:out value="${question.questionText}" /></p>
                 </div>
                 <div class="card-body options-container">
                     <div class="form-check">
@@ -52,7 +53,7 @@
                                name="answers[${question.questionId}]" id="optionA_${question.questionId}" 
                                value="A" required>
                         <label class="form-check-label" for="optionA_${question.questionId}">
-                            A) ${question.optionA}
+                            A) <c:out value="${question.optionA}" escapeXml="true"/>
                         </label>
                     </div>
                     <div class="form-check">
@@ -60,7 +61,7 @@
                                name="answers[${question.questionId}]" id="optionB_${question.questionId}" 
                                value="B">
                         <label class="form-check-label" for="optionB_${question.questionId}">
-                            B) ${question.optionB}
+                            B) <c:out value="${question.optionB}" escapeXml="true"/>
                         </label>
                     </div>
                     <div class="form-check">
@@ -68,7 +69,7 @@
                                name="answers[${question.questionId}]" id="optionC_${question.questionId}" 
                                value="C">
                         <label class="form-check-label" for="optionC_${question.questionId}">
-                            C) ${question.optionC}
+                            C) <c:out value="${question.optionC}" escapeXml="true"/>
                         </label>
                     </div>
                     <div class="form-check">
@@ -76,7 +77,7 @@
                                name="answers[${question.questionId}]" id="optionD_${question.questionId}" 
                                value="D">
                         <label class="form-check-label" for="optionD_${question.questionId}">
-                            D) ${question.optionD}
+                            D) <c:out value="${question.optionD}" escapeXml="true"/>
                         </label>
                     </div>
                 </div>

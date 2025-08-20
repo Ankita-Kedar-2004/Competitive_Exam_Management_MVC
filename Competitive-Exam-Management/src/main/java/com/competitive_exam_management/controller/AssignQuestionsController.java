@@ -1,6 +1,8 @@
 package com.competitive_exam_management.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,11 +34,12 @@ public class AssignQuestionsController {
 	@PostMapping("/assignQuestions")
 	public String assignQuestion(@RequestParam int studentId,@RequestParam int examId,Model model) {
 		List <QuestionsResponseDto> assignQuestions = assignQuestionsInterface.assignQuestions(studentId,examId);
-		for (QuestionsResponseDto assignQuestion:assignQuestions) {
-			System.out.println(assignQuestion);
-		}
+		  model.addAttribute("studentId", studentId);
+	     model.addAttribute("examId", examId);
 		model.addAttribute("questions", assignQuestions);
 		return "AssignQuestionsView";
 		
 	}
+
+
 }
