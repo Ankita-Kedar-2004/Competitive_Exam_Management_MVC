@@ -34,7 +34,7 @@ public class ExamController {
 	public String registerExam(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes){
 		ExamDto success = examInterface.registerExam(examDto);
  		redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
- 		return  "redirect:/Exam_View";
+ 		return  "redirect:/exam/Exam_View";
 		}
 
 @GetMapping("/updateExam/{id}")
@@ -55,7 +55,7 @@ public class ExamController {
 public String examUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes) {
      ExamDto success = examInterface.examUpdate(examDto);
 	 redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
-	 return "redirect:/Exam_View";
+	 return "redirect:/exam/Exam_View";
 	 
 }
 }

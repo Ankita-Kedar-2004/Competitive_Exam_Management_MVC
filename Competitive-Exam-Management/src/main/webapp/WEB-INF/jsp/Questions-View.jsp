@@ -8,31 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-            margin-left: 220px;
-            margin-top: 100px;
-        }
-        .content-wrapper {
-            padding: 20px;
-        }
-        .card {
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        .card-header {
-            background-color: #0d6efd;
-            color: #fff;
-            font-size: 1.25rem;
-            padding: 0.75rem 1.25rem;
-        }
-        .table th, .table td {
-            vertical-align: middle;
-            font-size: 0.95rem;
-        }
-        .btn-sm {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.8rem;
+       body {
+            background-color: #f8f9fa; 
+            margin-left:280px;
+            margin-top:100px;
         }
         .no-data {
             color: #dc3545;
@@ -56,32 +35,10 @@
             align-items: center;
             animation: slideIn 0.5s ease-out;
         }
-
         @keyframes slideIn {
             from { transform: translateY(30px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
-        input::placeholder {
-    color: #6c757d;
-    font-style: italic;
-}
-
-.form-control,
-.form-select {
-    border-radius: 8px;
-    border: 1px solid #ced4da;
-    font-size: 0.95rem;
-    padding: 0.45rem 0.75rem;
-}
-
-.btn-success {
-    background-color: #198754;
-    border: none;
-}
-
-.btn-success:hover {
-    background-color: #157347;
-}
     </style>
 </head>
 <body>
@@ -92,28 +49,28 @@
                 Questions List
             </div>
             <div class="card-body">
-            <div class="row mb-4 align-items-center">
-    <div class="col-md-5">
-        <input type="text" id="questionSearch" class="form-control shadow-sm" placeholder=" Search question..." />
-    </div>
+                <div class="row mb-4 align-items-center">
+                    <div class="col-md-5">
+                        <input type="text" id="questionSearch" class="form-control shadow-sm" placeholder=" Search question..." />
+                    </div>
 
-    <div class="col-md-4">
-        <select name="examName" class="form-select shadow-sm">
-            <option value="">-- Select Exam --</option>
-            <c:forEach var="name" items="${examNames}">
-                <option value="${name}">${name}</option>
-            </c:forEach>
-        </select>
-    </div>
+                    <div class="col-md-4">
+                        <select name="examName" class="form-select shadow-sm">
+                            <option value="">-- Select Exam --</option>
+                            <c:forEach var="name" items="${examNames}">
+                                <option value="${name}">${name}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
-    <div class="col-md-3 text-end">
-        <a href="${pageContext.request.contextPath}/question/registerQuestions" class="btn btn-sm btn-success shadow-sm">
-            <i class="bi bi-plus-circle me-1"></i> Add Question
-        </a>
-    </div>
-</div>
+                    <div class="col-md-3 text-end">
+                        <a href="${pageContext.request.contextPath}/question/registerQuestions" class="btn btn-sm btn-success shadow-sm">
+                            <i class="bi bi-plus-circle me-1"></i> Add Question
+                        </a>
+                    </div>
+                </div>
 
-                  <div class="table-responsive">
+                <div class="table-responsive">
                     <table class="table table-bordered table-hover text-center align-middle">
                         <thead class="table-light">
                             <tr>
@@ -131,14 +88,14 @@
                         <tbody>
                             <c:forEach var="question" items="${questions}">
                                 <tr>
-                                    <td>${question.questionId}</td>
-                                    <td>${question.questionText}</td>
-                                    <td>${question.optionA}</td>
-                                    <td>${question.optionB}</td>
-                                    <td>${question.optionC}</td>
-                                    <td>${question.optionD}</td>
-                                    <td>${question.correctAnswer}</td>
-                                    <td>${question.examName}</td>
+                                    <td><c:out value="${question.questionId}" /></td>
+                                    <td><c:out value="${question.questionText}" escapeXml="true"/></td>
+                                    <td><c:out value="${question.optionA}" escapeXml="true"/></td>
+                                    <td><c:out value="${question.optionB}" escapeXml="true"/></td>
+                                    <td><c:out value="${question.optionC}" escapeXml="true"/></td>
+                                    <td><c:out value="${question.optionD}" escapeXml="true"/></td>
+                                    <td><c:out value="${question.correctAnswer}" /></td>
+                                    <td><c:out value="${question.examName}" /></td>
                                     <td>
                                         <a href="${pageContext.request.contextPath}/question/updateQuestions/${question.questionId}" 
                                            class="btn btn-sm btn-warning" title="Edit">
@@ -192,7 +149,6 @@
     const examFilter = document.querySelector('select[name="examName"]');
     const tableRows = document.querySelectorAll("table tbody tr");
 
-    
     function filterQuestions() {
         const searchValue = searchInput.value.toLowerCase();
         const selectedExam = examFilter.value.toLowerCase();
@@ -211,10 +167,8 @@
         });
     }
 
-   
     searchInput.addEventListener('keyup', filterQuestions);
     examFilter.addEventListener('change', filterQuestions);
-
 </script>
 <%@ include file="modules/footer.jsp" %>
 </body>

@@ -21,6 +21,10 @@ public class QuestionsResponseDto {
 		    private int examId;
 		    private String examName;
 		 
+		    
+		    private String userAnswer;
+		    
+		    private String studentAnswer;
 	}
 
 

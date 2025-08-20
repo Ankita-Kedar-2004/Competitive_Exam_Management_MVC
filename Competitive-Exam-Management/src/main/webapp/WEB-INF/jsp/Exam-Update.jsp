@@ -48,7 +48,7 @@
         </div>
 
         <div class="card-body">
-            <form action="${pageContext.request.contextPath}/exam_update" method="post">
+            <form action="${pageContext.request.contextPath}/exam/exam_update" method="post">
                 <!-- Hidden input for examId -->
                 <input type="hidden" name="examId" value="${exam.examId}" />
 
