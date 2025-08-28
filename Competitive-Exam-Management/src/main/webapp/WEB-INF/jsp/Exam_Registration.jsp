@@ -20,6 +20,15 @@
             <input type="number" class="form-control" id="examDuration" name="examDuration" required min="1" />
         </div>
     </div>
+     <div class="mb-3 row">
+                        <label class="examStatus">Status</label>
+                        <select name="status" class="form-select" required>
+                            <option value="">Select Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
 
     <div class="d-flex justify-content-end">
         <button type="submit" class="btn btn-primary me-2">Save</button>

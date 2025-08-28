@@ -2,12 +2,17 @@ package com.competitive_exam_management.Services;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.competitive_exam_management.Dto.ExamDto;
 import com.competitive_exam_management.Dto.QuestionsResponseDto;
+import com.competitive_exam_management.Dto.ResultRespDto;
 
 import ServicesInterface.ResultInterface;
 
@@ -30,6 +35,30 @@ public class ResultServicesImpl implements ResultInterface{
 	        System.err.println("Error calling API: " + e.getMessage());
 	        return 0;
 	    }
+	}
+
+	@Override
+	public List <ResultRespDto> viewResult() {
+		String API_URL = "http://localhost:8282/result/viewAllResult";
+		 RestTemplate restTemplate = new RestTemplate();
+
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setContentType(MediaType.APPLICATION_JSON);
+	        ResultRespDto[] response = restTemplate.getForObject(API_URL, ResultRespDto[].class);
+      return  Arrays.asList(response);
+	}
+
+	@Override
+	public List<ResultRespDto> viewResultById(int id) {
+		String API_URL = "http://localhost:8282/result/viewResultById/"+id;
+		 RestTemplate restTemplate = new RestTemplate();
+
+		    HttpHeaders headers = new HttpHeaders();
+		    headers.setContentType(MediaType.APPLICATION_JSON);
+
+		    ResultRespDto[] response = restTemplate.postForObject(API_URL, null, ResultRespDto[].class);
+
+		    return Arrays.asList(response);
 	}
 	
 

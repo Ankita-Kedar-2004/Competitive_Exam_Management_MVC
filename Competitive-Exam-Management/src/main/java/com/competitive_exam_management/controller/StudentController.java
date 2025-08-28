@@ -1,9 +1,7 @@
 package com.competitive_exam_management.controller;
 
 import java.time.Year;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,16 +16,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.competitive_exam_management.Dto.QuestionsResponseDto;
 import com.competitive_exam_management.Dto.StudentDto;
 import com.competitive_exam_management.Services.StudentServicesImpl;
 
-@RequestMapping("/student")
+import ServicesInterface.AssignQuestionsInterface;
+import ServicesInterface.ResultInterface;
+import ServicesInterface.StudentInterface;
+
 @Controller
 @RequestMapping("/student")
 public class StudentController {
 	
 	@Autowired
-	private StudentServicesImpl servicesImpl;
+	private StudentInterface studentInterface;
 
 	 @GetMapping("/student_registration")
 	    public String studentRegistration() {
@@ -36,8 +38,8 @@ public class StudentController {
 	
 
 	    @GetMapping("/student_view")
-	    public String viewStudents( Model model) {
-	    	List<StudentDto> students = servicesImpl.getAllStudents();
+	    public String viewStudents(Model model) {
+	        List<StudentDto> students = studentInterface.getAllStudents();
 	        model.addAttribute("students", students);
 	        return "Student-View"; 
 	    }
@@ -45,20 +47,19 @@ public class StudentController {
 	    
 		@GetMapping("/student_update/{id}")
 		public String studentUpdate(@PathVariable int id, Model model) {
-			StudentDto student = servicesImpl.getStudentById(id);
+			StudentDto student = studentInterface.getStudentById(id);
 		    model.addAttribute("student", student);
             return "Student-Update"; 
 	    }
 		
 		@GetMapping("/student_delete/{id}")
 		public String studentDelete(@PathVariable int id) {
-			servicesImpl.deleteStudentById(id);
-			return "redirect:/student/student_view";	   
-			}
+			StudentDto student = studentInterface.deleteStudentById(id);
+			return "redirect:/student/student_view";	    }
 	 
 	    @PostMapping("/student_save")
 	    public String registerStudent(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
-	 		StudentDto success = servicesImpl.studentRegistration(studentDto);
+	 		StudentDto success = studentInterface.studentRegistration(studentDto);
 	 		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
 	 		return "redirect:/student/student_view";
 	    }
@@ -66,9 +67,18 @@ public class StudentController {
 
      @PostMapping("/student_update")
      public String studentUpdateData(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
-    	 StudentDto success = servicesImpl.studentUpdate(studentDto);
+    	 StudentDto success = studentInterface.studentUpdate(studentDto);
   		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
 	 return "redirect:/student/student_view";
+    	 
+     }
+     
+     @GetMapping("/student_profile")
+     public String studentProfieData(Model model,HttpSession session) {
+    	   String userEmail=(String) session.getAttribute("useremail");
+    	 StudentDto student = studentInterface.studentProfieData(userEmail);
+    	 model.addAttribute("student", student);
+	 return "StudentProfile";
     	 
      }
      }
