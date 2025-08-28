@@ -63,10 +63,12 @@
                         <label class="form-label">Email</label>
                         <input type="email" name="email" class="form-control" value="${student.email}" required>
                     </div>
-                    <div class="col-md-6">
+   
+  <div class="col-md-6">
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" value="${student.password}" required>
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label">Qualification</label>
                         <select name="qualification" class="form-select" required>
@@ -99,8 +101,8 @@
     <label class="form-label">Status</label>
     <select id="status" name="status" class="form-select shadow-sm" required>
         <option value="">-- Select Status --</option>
-        <option value="active" ${student.status == 'active' ? 'selected' : ''}>Active</option>
-        <option value="inactive" ${student.status == 'inactive' ? 'selected' : ''}>Inactive</option>
+        <option value="active ${student.status == 'active' ? 'selected' : ''}">Active</option>
+        <option value="inactive" ${student.status == 'inactive' ? 'selected' : ''}">Inactive</option>
     </select>
 </div>
                 

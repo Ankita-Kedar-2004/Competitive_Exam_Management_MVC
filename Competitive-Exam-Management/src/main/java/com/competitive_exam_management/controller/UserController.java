@@ -17,18 +17,13 @@ import com.competitive_exam_management.Dto.UserLoginRespDto;
 import com.competitive_exam_management.Services.UserServicesImpl;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 	
 	@Autowired
 	private UserServicesImpl servicesImpl;
 	
-	    
-    @GetMapping("/")
-    public String loginpage() {
-        return "login"; 
-    }
-    
-    @GetMapping("/dashborad")
+	      @GetMapping("/dashborad")
     public String Dashborad() {
         return "Dashborad"; 
     }
@@ -44,7 +39,7 @@ public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession s
 			session.setAttribute("userId", userId);
 			session.setAttribute("useremail", userEmail);
 			session.setAttribute("userRole", userRole);
-                return "Dashborad"; 
+			return "redirect:/user/dashborad";
 		}
 		return "login";
 		
@@ -58,7 +53,7 @@ public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession s
  	String success = servicesImpl.userDto(userDto);
  	    
  	    if (success != null) {
- 	        return "redirect:/login";
+ 	        return "redirect:/user/login";
  	    }
      return "login"; 
  }

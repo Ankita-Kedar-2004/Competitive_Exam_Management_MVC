@@ -17,12 +17,12 @@ import com.competitive_exam_management.Dto.StudentDto;
 
 import ServicesInterface.ExamInterface;
 
-@RequestMapping("/exam")
 @Controller
 @RequestMapping("/exam")
 public class ExamController {
 	@Autowired
 	ExamInterface examInterface;
+	
 	
 
 	@GetMapping("/addExam")
@@ -34,6 +34,8 @@ public class ExamController {
 @PostMapping("/registerExam")
 	public String registerExam(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes){
 		ExamDto success = examInterface.registerExam(examDto);
+		System.out.println("Hii");
+		System.out.println(examDto.getStatus());
  		redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
  		return  "redirect:/exam/Exam_View";
 		}
@@ -59,10 +61,4 @@ public String examUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes 
 	 return "redirect:/exam/Exam_View";
 	 
 }
-
-@GetMapping("/exam_delete/{id}")
-public String studentDelete(@PathVariable int id) {
-	examInterface.deleteExamById(id);
-	return "redirect:/exam/Exam_View";	   
-	}
 }

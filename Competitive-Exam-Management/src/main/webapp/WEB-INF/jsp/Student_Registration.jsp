@@ -98,8 +98,16 @@
                     </div>
                     
      
-
+ <div class="col-md-6">
+                        <label class="form-label">Status</label>
+                        <select name="status" class="form-select" required>
+                            <option value="">Select Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
                 </div>
+                 
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary px-4">Save</button>
         <button type="reset" class="btn btn-secondary">Cancel</button>

@@ -17,8 +17,10 @@ public interface StudentInterface {
 	 
 	 public StudentDto studentUpdate(StudentDto studentDto) ;
 	 
-	 public int deleteStudentById(int id);
+	 public StudentDto deleteStudentById(int id);
 
 	List<StudentDto> getAllStudents();
+
+	public StudentDto studentProfieData(String userEmail);
 
 }

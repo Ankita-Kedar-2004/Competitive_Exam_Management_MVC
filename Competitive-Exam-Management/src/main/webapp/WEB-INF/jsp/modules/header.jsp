@@ -87,7 +87,7 @@
         <!--navigation-->
         <ul class="metismenu" id="menu">
             <li>
-                <a href="dashboard" class="has-arrow">
+                <a href="${pageContext.request.contextPath}/user/dashborad" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-home-alt'></i></div>
                     <div class="menu-title">Dashboard</div>
                 </a>
@@ -100,6 +100,7 @@
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/student/student_registration"><i class='bx bx-radio-circle'></i>Student Registration</a></li>
                     <li><a href="${pageContext.request.contextPath}/student/student_view"><i class='bx bx-radio-circle'></i>Student View</a></li>
+                    <li><a href="${pageContext.request.contextPath}/student/student_profile"><i class='bx bx-radio-circle'></i>Student Profile</a></li>
                 </ul>
             </li>
             <li>
@@ -121,6 +122,16 @@
                 <ul>
                     <li><a href="${pageContext.request.contextPath}/question/registerQuestions"><i class='bx bx-radio-circle'></i>Questions Registration</a></li>
                     <li><a href="${pageContext.request.contextPath}/question/viewQuestions"><i class='bx bx-radio-circle'></i>Questions View</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" class="has-arrow">
+                    <div class="parent-icon"><i class='bx bx-edit-alt'></i></div>
+                    <div class="menu-title">Result</div>
+                </a>
+                <ul>
+                    <li><a href="${pageContext.request.contextPath}/result/viewAllResult"><i class='bx bx-radio-circle'></i>View Result</a></li>
+                   
                 </ul>
             </li>
         </ul>

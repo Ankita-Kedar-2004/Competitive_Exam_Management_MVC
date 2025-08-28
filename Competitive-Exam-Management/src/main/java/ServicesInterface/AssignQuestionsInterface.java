@@ -10,7 +10,7 @@ import com.competitive_exam_management.Dto.QuestionsResponseDto;
 @Service
 public interface AssignQuestionsInterface {
 
-	List<QuestionsResponseDto> assignQuestions(int studentId, int examId);
+	List<QuestionsResponseDto> assignQuestions(int studentId, int examId2);
 
 
 }
