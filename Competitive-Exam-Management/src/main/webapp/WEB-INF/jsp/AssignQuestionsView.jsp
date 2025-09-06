@@ -33,11 +33,24 @@
         .submit-btn {
             margin-top: 30px;
         }
+        .timer {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: red;
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <form action="${pageContext.request.contextPath}/result/submitExam" method="post">
+
+    <!--  Timer -->
+    <div class="timer">
+        Time Left: <span id="timer"></span>
+    </div>
+
+    <form id="examForm" action="${pageContext.request.contextPath}/result/submitExam" method="post">
         <input type="hidden" name="studentId" value="${studentId}">
         <input type="hidden" name="examId" value="${examId}">
         
@@ -89,6 +102,40 @@
         </div>
     </form>
 </div>
+
+<!--  Countdown Script -->
+<script>
+    // Safely get totalQuestions from server, fallback 10 if null
+    let totalQuestions = <c:out value="${totalQuestions}" default="0"/>;
+    let totalTime = totalQuestions > 0 ? totalQuestions * 60 : 600; // default 10 min
+
+    let timerElement = document.getElementById("timer");
+    let examForm = document.getElementById("examForm");
+
+    function startTimer(duration) {
+        let time = duration;
+
+        let interval = setInterval(() => {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+
+            timerElement.textContent =
+                String(minutes).padStart(2, "0") + ":" + String(seconds).padStart(2, "0");
+
+            if (time <= 0) {
+                clearInterval(interval);
+                alert("Time is up! Your exam will be submitted.");
+                examForm.submit();
+            }
+            time--;
+        }, 1000);
+    }
+
+    // Start timer when page loads
+    window.onload = function() {
+        startTimer(totalTime);
+    };
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <%@ include file="modules/footer.jsp" %>
