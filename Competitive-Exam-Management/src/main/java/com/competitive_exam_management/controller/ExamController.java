@@ -2,6 +2,8 @@ package com.competitive_exam_management.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,19 +25,17 @@ public class ExamController {
 	@Autowired
 	ExamInterface examInterface;
 	
-	
-
-	@GetMapping("/addExam")
+   @GetMapping("/addExam")
 	public String AddExamPage(){
 		return "Exam_Registration";
 		
 	}
 	
 @PostMapping("/registerExam")
-	public String registerExam(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes){
+	public String registerExam(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes,HttpSession session){
+	    String user=(String) session.getAttribute("useremail");
+	    examDto.setUser(user);
 		ExamDto success = examInterface.registerExam(examDto);
-		System.out.println("Hii");
-		System.out.println(examDto.getStatus());
  		redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
  		return  "redirect:/exam/Exam_View";
 		}
@@ -55,10 +55,17 @@ public class ExamController {
 }
 
 @PostMapping("/exam_update")
-public String examUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes) {
+public String examUpdateData(@ModelAttribute ExamDto examDto,RedirectAttributes redirectAttributes,HttpSession session) {
+	String user=(String) session.getAttribute("useremail");
+    examDto.setUser(user);
      ExamDto success = examInterface.examUpdate(examDto);
 	 redirectAttributes.addFlashAttribute("successMsg", "Exam List Successfully Updated!");
 	 return "redirect:/exam/Exam_View";
 	 
 }
+@GetMapping("/exam_delete/{id}")
+public String studentDelete(@PathVariable int id) {
+	examInterface.deleteExamById(id);
+	return "redirect:/exam/Exam_View";	   
+	}
 }

@@ -33,34 +33,39 @@
     </div>
 
     <div id="questionsSection" class="mt-4" style="display:none;">
-        <c:forEach var="q" items="${questions}" varStatus="status">
+        <c:forEach var="q" items="${question}" varStatus="status">
             <div class="question-box">
                 <p><strong>Q${status.index + 1}:</strong> <c:out value="${q.questionText}" /></p>
 
+                <c:set var="studentAns" value="${answers[q.questionId]}" />
+
                 <ul>
-                    <li class="${q.correctAnswer == 'A' ? 'correct' : ''}">
+                    <!-- Option A -->
+                    <li class="${studentAns == 'A' && q.correctAnswer == 'A' ? 'correct' : (studentAns == 'A' && studentAns != q.correctAnswer ? 'incorrect' : (q.correctAnswer == 'A' ? 'correct' : ''))}">
                         A) <c:out value="${q.optionA}" />
-                        <c:if test="${q.studentAnswer == 'A' && q.studentAnswer != q.correctAnswer}">(Your Answer)</c:if>
-                        <c:if test="${q.studentAnswer == null}"><span class="not-answered">(Not Answered)</span></c:if>
+                        <c:if test="${studentAns == 'A'}">(Your Answer)</c:if>
                     </li>
-                    <li class="${q.correctAnswer == 'B' ? 'correct' : ''}">
+
+                    <!-- Option B -->
+                    <li class="${studentAns == 'B' && q.correctAnswer == 'B' ? 'correct' : (studentAns == 'B' && studentAns != q.correctAnswer ? 'incorrect' : (q.correctAnswer == 'B' ? 'correct' : ''))}">
                         B) <c:out value="${q.optionB}" />
-                        <c:if test="${q.studentAnswer == 'B' && q.studentAnswer != q.correctAnswer}">(Your Answer)</c:if>
-                        <c:if test="${q.studentAnswer == null}"><span class="not-answered">(Not Answered)</span></c:if>
+                        <c:if test="${studentAns == 'B'}">(Your Answer)</c:if>
                     </li>
-                    <li class="${q.correctAnswer == 'C' ? 'correct' : ''}">
+
+                    <!-- Option C -->
+                    <li class="${studentAns == 'C' && q.correctAnswer == 'C' ? 'correct' : (studentAns == 'C' && studentAns != q.correctAnswer ? 'incorrect' : (q.correctAnswer == 'C' ? 'correct' : ''))}">
                         C) <c:out value="${q.optionC}" />
-                        <c:if test="${q.studentAnswer == 'C' && q.studentAnswer != q.correctAnswer}">(Your Answer)</c:if>
-                        <c:if test="${q.studentAnswer == null}"><span class="not-answered">(Not Answered)</span></c:if>
+                        <c:if test="${studentAns == 'C'}">(Your Answer)</c:if>
                     </li>
-                    <li class="${q.correctAnswer == 'D' ? 'correct' : ''}">
+
+                    <!-- Option D -->
+                    <li class="${studentAns == 'D' && q.correctAnswer == 'D' ? 'correct' : (studentAns == 'D' && studentAns != q.correctAnswer ? 'incorrect' : (q.correctAnswer == 'D' ? 'correct' : ''))}">
                         D) <c:out value="${q.optionD}" />
-                        <c:if test="${q.studentAnswer == 'D' && q.studentAnswer != q.correctAnswer}">(Your Answer)</c:if>
-                        <c:if test="${q.studentAnswer == null}"><span class="not-answered">(Not Answered)</span></c:if>
+                        <c:if test="${studentAns == 'D'}">(Your Answer)</c:if>
                     </li>
                 </ul>
 
-                <p>✅ Correct Answer: 
+                <p>✅ Correct Answer:
                     <span class="correct">
                         <c:choose>
                             <c:when test="${q.correctAnswer == 'A'}"><c:out value="${q.optionA}" /></c:when>
@@ -70,6 +75,10 @@
                         </c:choose>
                     </span>
                 </p>
+
+                <c:if test="${empty studentAns}">
+                    <p class="not-answered">Not Answered ❌</p>
+                </c:if>
             </div>
         </c:forEach>
     </div>

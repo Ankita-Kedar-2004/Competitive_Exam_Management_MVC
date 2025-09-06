@@ -23,7 +23,8 @@ public class StudentServicesImpl implements StudentInterface{
 
 	public StudentDto studentRegistration(StudentDto studentDto) {
 	String API_URL = "http://localhost:8282/student/student_registration_data";
-    System.out.println(studentDto.getPassword());
+	System.out.println("hello");
+	System.out.println(studentDto.getUser());
 		 RestTemplate restTemplate = new RestTemplate();
 
 	        HttpHeaders headers = new HttpHeaders();

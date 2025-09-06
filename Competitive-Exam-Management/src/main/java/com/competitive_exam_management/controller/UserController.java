@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.catalina.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,28 +24,54 @@ public class UserController {
 	@Autowired
 	private UserServicesImpl servicesImpl;
 	
-	      @GetMapping("/dashborad")
-    public String Dashborad() {
-        return "Dashborad"; 
+	      @GetMapping("/admin-dashborad")
+            public String AdminDashborad() {
+        return "Admin-Dashborad"; 
     }
-    
+	      
+	      @GetMapping("/student-dashborad")
+	      public String StudentDashborad() {
+	          return "Student-Dashboard"; 
+	      }
+	     
+	      @GetMapping("/dashborad")
+          public String Dashborad(HttpSession session) {
+	    	  String userRole=(String) session.getAttribute("userRole");
+	    		if ("Admin".equalsIgnoreCase(userRole)) {
+        	 		return "redirect:/user/admin-dashborad";   
+        	 	} else if ("Student".equalsIgnoreCase(userRole)) {
+        	 		return "redirect:/user/student-dashborad";
+        	 	}
+				return "redirect:/user/student-dashborad";
+      
+  }
     
   @GetMapping("/login")
-public String logindata(@ModelAttribute UserLoginDto userLoginDto ,HttpSession session) {
-		UserLoginRespDto success = servicesImpl.userLoginDto(userLoginDto);
-		if(success!=null) {
-			String userId=String.valueOf(success.getId());
-			String userEmail=success.getEmail();
-			String userRole=success.getRole();
-			session.setAttribute("userId", userId);
-			session.setAttribute("useremail", userEmail);
-			session.setAttribute("userRole", userRole);
-			return "redirect:/user/dashborad";
-		}
-		return "login";
-		
-       
-    }
+  public String logindata(@ModelAttribute UserLoginDto userLoginDto, HttpSession session,  Model model) {
+         UserLoginRespDto success = servicesImpl.userLoginDto(userLoginDto);
+
+         if (success != null) {
+        	 	String userId = String.valueOf(success.getId());
+        	 	String userEmail = success.getEmail();
+        	 	String userRole = success.getRole();
+
+        	 	session.setAttribute("userId", userId);
+        	 	session.setAttribute("useremail", userEmail);
+        	 	session.setAttribute("userRole", userRole);
+
+        	 	if ("Admin".equalsIgnoreCase(userRole)) {
+        	 		return "redirect:/user/admin-dashborad";   
+        	 	} else if ("Student".equalsIgnoreCase(userRole)) {
+        	 		return "redirect:/user/student-dashborad";
+        	 	}
+
+         }
+
+         // If login fails
+         model.addAttribute("error", "Invalid email or password!");
+         return "login"; // return back to login.jsp
+}
+
  
  
  

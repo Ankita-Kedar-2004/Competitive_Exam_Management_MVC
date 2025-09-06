@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +34,9 @@ public class AssignQuestionsController {
 	}
 
 	@PostMapping("/assignQuestions")
-	public String assignQuestion(@RequestParam int studentId,@RequestParam int examId,Model model) {
+	public String assignQuestion(@RequestParam int examId,Model model,HttpSession session) {
+		String userIdStr = (String) session.getAttribute("userId"); 
+		int studentId = Integer.parseInt(userIdStr);
 		List <QuestionsResponseDto> assignQuestions = assignQuestionsInterface.assignQuestions(studentId,examId);
 		  model.addAttribute("studentId", studentId);
 	     model.addAttribute("examId", examId);
