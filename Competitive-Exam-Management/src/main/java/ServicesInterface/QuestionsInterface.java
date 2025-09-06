@@ -18,7 +18,7 @@ public interface QuestionsInterface {
 
 	QuestionsResponseDto updateQuestions(int id);
 
-	ResponseEntity<QuestionsDto> questionsUpdate(QuestionsDto questionsDto);
+	QuestionsResponseDto questionsUpdate(QuestionsDto questionsDto);
 
 	boolean deleteQuestions(int id);
 

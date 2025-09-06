@@ -15,8 +15,10 @@ public class QuestionsDto {
         private String optionC;
         private String optionD;
         private String correctAnswer;
+        private String examName;
         private int examId;
-        private int userId;  
+        private int userId;
+        private String user;
 
 }
    

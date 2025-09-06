@@ -138,11 +138,6 @@
 
         <form action="/assignQuestions/assignQuestions" method="post">
             <div class="mb-4">
-                <label for="studentId" class="form-label">Student ID</label>
-                <input type="number" class="form-control" id="studentId" name="studentId" placeholder="Enter your Student ID" required>
-            </div>
-
-            <div class="mb-4">
                 <label for="examId" class="form-label">Exam ID</label>
                 <input type="number" class="form-control" id="examId" name="examId" placeholder="Enter Exam ID" required>
             </div>

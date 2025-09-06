@@ -105,9 +105,15 @@
 
 <!--  Countdown Script -->
 <script>
+<<<<<<< HEAD
     // Safely get totalQuestions from server, fallback 10 if null
     let totalQuestions = <c:out value="${totalQuestions}" default="0"/>;
     let totalTime = totalQuestions > 0 ? totalQuestions * 60 : 600; // default 10 min
+=======
+    // Controller should pass totalQuestions as model attribute
+    let totalQuestions = ${totalQuestions};  // Example: 20
+    let totalTime = totalQuestions * 60;     // 1 min per question = seconds
+>>>>>>> c67732417996278d18b127d5313edc74a1766b0e
 
     let timerElement = document.getElementById("timer");
     let examForm = document.getElementById("examForm");

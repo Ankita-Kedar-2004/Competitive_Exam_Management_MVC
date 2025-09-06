@@ -101,8 +101,8 @@
     <label class="form-label">Status</label>
     <select id="status" name="status" class="form-select shadow-sm" required>
         <option value="">-- Select Status --</option>
-        <option value="active ${student.status == 'active' ? 'selected' : ''}">Active</option>
-        <option value="inactive" ${student.status == 'inactive' ? 'selected' : ''}">Inactive</option>
+        <option value="Active ${student.status == 'Active' ? 'selected' : ''}">Active</option>
+        <option value="Inactive" ${student.status == 'Inactive' ? 'selected' : ''}">Inactive</option>
     </select>
 </div>
                 

@@ -58,15 +58,20 @@ public class StudentController {
 			return "redirect:/student/student_view";	    }
 	 
 	    @PostMapping("/student_save")
-	    public String registerStudent(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
+	    public String registerStudent(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes,HttpSession session) {
+	    	String user=(String) session.getAttribute("useremail");
+	 		studentDto.setUser(user);
 	 		StudentDto success = studentInterface.studentRegistration(studentDto);
+	 		
 	 		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
 	 		return "redirect:/student/student_view";
 	    }
 
 
      @PostMapping("/student_update")
-     public String studentUpdateData(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes) {
+     public String studentUpdateData(@ModelAttribute StudentDto studentDto,RedirectAttributes redirectAttributes,HttpSession session) {
+    	 String user=(String) session.getAttribute("useremail");
+	 		studentDto.setUser(user);
     	 StudentDto success = studentInterface.studentUpdate(studentDto);
   		redirectAttributes.addFlashAttribute("successMsg", "Student List Successfully Updated!");
 	 return "redirect:/student/student_view";

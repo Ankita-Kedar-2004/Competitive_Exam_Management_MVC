@@ -68,25 +68,26 @@ public class QuestionsServicesImpl implements QuestionsInterface {
     }
 
     @Override
-    public ResponseEntity<QuestionsDto> questionsUpdate(QuestionsDto questionsDto) {
+    public QuestionsResponseDto questionsUpdate(QuestionsDto questionsDto) {
         String API_URL = "http://localhost:8282/questions_update_data1";
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
+        // Send request body as QuestionsDto
         HttpEntity<QuestionsDto> request = new HttpEntity<>(questionsDto, headers);
 
         try {
-            ResponseEntity<QuestionsDto> response = restTemplate.exchange(
+            ResponseEntity<QuestionsResponseDto> response = restTemplate.exchange(
                     API_URL,
                     HttpMethod.POST,
                     request,
-                    QuestionsDto.class
+                    QuestionsResponseDto.class
             );
 
-            if (response != null) {
-                return response;
+            if (response != null && response.getBody() != null) {
+                return response.getBody();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,6 +95,7 @@ public class QuestionsServicesImpl implements QuestionsInterface {
 
         return null;
     }
+
 
     @Override
     public boolean deleteQuestions(int id) {

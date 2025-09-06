@@ -1,8 +1,10 @@
 package com.competitive_exam_management.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,7 +33,7 @@ public class ResultController {
 	                         @RequestParam Map<String, String> allParams,
 	                         Model model) {
 	    
-	    Map<Integer, String> answers = new HashMap<>();
+		Map<Integer, String> answers = new LinkedHashMap<>();
 	    for (Map.Entry<String, String> entry : allParams.entrySet()) {
 	        if (entry.getKey().startsWith("answers[")) {
 	            String qIdStr = entry.getKey().substring(8, entry.getKey().length() - 1);
@@ -41,9 +43,16 @@ public class ResultController {
 	    }
 	    
 	  
-	    int score = resultInterface.evaluateExam(studentId, examId, answers);
-	    
-	    model.addAttribute("score", score);
+	    ResultRespDto examResult = resultInterface.evaluateExam(studentId, examId, answers);
+	    List<Integer> submittedIds = new ArrayList<>(answers.keySet()); 
+	    List<Integer> dbIds = examResult.getQuestions()
+	                                    .stream()
+	                                    .map(QuestionsResponseDto::getQuestionId)
+	                                    .collect(Collectors.toList()); 
+	   
+	    model.addAttribute("score", examResult.getScore());
+	    model.addAttribute("question",examResult.getQuestions());
+	    model.addAttribute("answers",answers);
 	    return "ExamResult";
 	}
 	
@@ -59,7 +68,7 @@ public class ResultController {
             	model.addAttribute("result",result);
             }
             else {
-            	List<ResultRespDto> result=resultInterface.viewResult();
+            	List<ResultRespDto> result=resultInterface.viewResult();  
             	model.addAttribute("result",result);
             }
        
