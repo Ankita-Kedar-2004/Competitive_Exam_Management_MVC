@@ -18,12 +18,11 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url('/resources/assets/images/login.jpg'); /* Adjust the path */
+      background-image: url('/resources/assets/images/Login.jpeg'); /* Adjust the path */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
-
     .overlay-dark {
       position: absolute;
       top: 0;
