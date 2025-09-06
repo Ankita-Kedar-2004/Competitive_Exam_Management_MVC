@@ -62,6 +62,14 @@
         <div class="col-sm-8">
             <input type="number" class="form-control" id="examDuration" name="examDuration" value="${exam.examDuration}"  required min="1" />
         </div>
+        
+        <div class="mb-3">
+                        <select id="status" name="status" class="form-select shadow-sm" required>
+        <option value="">-- Select Status --</option>
+        <option value="Active ${student.status == 'Active' ? 'selected' : ''}">Active</option>
+        <option value="Inactive" ${student.status == 'Inactive' ? 'selected' : ''}">Inactive</option>
+    </select>
+                </div>
     </div>
                 
 

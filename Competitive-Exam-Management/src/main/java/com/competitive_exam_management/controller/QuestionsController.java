@@ -38,9 +38,9 @@ public class QuestionsController {
 		 return "Questions_Registration";
 	}
 	
-	@GetMapping("/Questionsregister")
-	public String registerQuestionsPage(@RequestParam("examId") int examId, Model model){
-		model.addAttribute("examId", examId);
+	@GetMapping("/Questionsregister/{id}")
+	public String registerQuestionsPage(@PathVariable int id, Model model){
+		model.addAttribute("examId", id);
 		 return "Questions_Registration";
 	}
 	
@@ -49,6 +49,8 @@ public class QuestionsController {
 		String userIdStr = (String) session.getAttribute("userId");
 		int userId = Integer.parseInt(userIdStr);
 		 questionsDto.setUserId(userId);
+		 String user=(String) session.getAttribute("useremail");
+		 questionsDto.setUser(user);
 		    QuestionsDto success=questionsInterface.registerQuestions(questionsDto);
 		    return "redirect:/question/viewQuestions";
 		}
@@ -73,14 +75,17 @@ public class QuestionsController {
 	}
 	
 	@PostMapping("/questions_update_data")
-	public String questionsUpdateData(@ModelAttribute QuestionsDto questionsDto, RedirectAttributes redirectAttributes) {
-	    questionsInterface.questionsUpdate(questionsDto); 
+	public String questionsUpdateData(@ModelAttribute QuestionsDto questionsDto, RedirectAttributes redirectAttributes,HttpSession session) {
+		String user=(String) session.getAttribute("useremail");
+		 questionsDto.setUser(user);
+	   QuestionsResponseDto success= questionsInterface.questionsUpdate(questionsDto); 
 	    redirectAttributes.addFlashAttribute("successMsg", "Question Updated Successfully!");
 	    return "redirect:/question/viewQuestions";
 	}
 	
 	@GetMapping("/deleteQuestions/{id}")
     public String deleteQuestions(@PathVariable int id ,RedirectAttributes redirectAttributes){
+	
 		boolean success = questionsInterface.deleteQuestions(id);    
 		redirectAttributes.addFlashAttribute("successMsg", "Question Deleted Successfully!");
 	    return "redirect:/question/viewQuestions";

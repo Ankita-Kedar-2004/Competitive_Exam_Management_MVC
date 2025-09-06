@@ -12,7 +12,7 @@ import com.competitive_exam_management.Dto.ResultRespDto;
 @Service
 public interface ResultInterface {
 
-	int evaluateExam(int studentId, int examId, Map<Integer, String> answers);
+	ResultRespDto evaluateExam(int studentId, int examId, Map<Integer, String> answers);
 
 	List<ResultRespDto> viewResult();
 

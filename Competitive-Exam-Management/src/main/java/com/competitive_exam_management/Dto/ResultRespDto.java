@@ -16,4 +16,6 @@ private int exam_id;
 private int score;
 private int total;
 private List<QuestionsResponseDto> questions;
+
+private String user;
 }

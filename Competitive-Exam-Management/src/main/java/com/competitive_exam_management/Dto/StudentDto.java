@@ -19,5 +19,8 @@ public class StudentDto {
 	    private String collegeName;
 	    private int examId;
 	    private String status;
+	    private String user;
+
+		
 
 }
