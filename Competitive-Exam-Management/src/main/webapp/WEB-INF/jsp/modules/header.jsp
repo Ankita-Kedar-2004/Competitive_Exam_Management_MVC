@@ -91,9 +91,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
                             <li>
-                                <a class="dropdown-item d-flex align-items-center" href="${pageContext.request.contextPath}/logout">
-                                    <i class="bx bx-log-out-circle"><span>Logout</span></i>
-                                    
+                                <a class="dropdown-item d-flex align-items-center" href="${pageContext.request.contextPath}/logout"><i class="bx bx-log-out-circle"><span>Logout</span></i>
                                 </a>
                             </li>
                         </ul>

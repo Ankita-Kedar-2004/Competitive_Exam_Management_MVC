@@ -45,6 +45,7 @@
     padding: 10px 15px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    margin-top: 20px;
 }
     </style>
 </head>
