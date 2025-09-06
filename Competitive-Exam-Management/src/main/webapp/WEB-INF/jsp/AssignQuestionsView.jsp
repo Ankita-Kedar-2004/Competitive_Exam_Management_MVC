@@ -33,19 +33,25 @@
         .submit-btn {
             margin-top: 30px;
         }
-        .timer {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: red;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+       .timer {
+    position: fixed; /* Fix it on screen */
+    top: 10px;       /* distance from top */
+    right: 20px;     /* distance from right */
+    z-index: 9999;   /* make sure it stays on top */
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: red;
+    background-color: #fff; /* optional: white background */
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
     </style>
 </head>
 <body>
 <div class="container">
 
-    <!--  Timer -->
+    <!-- Timer -->
     <div class="timer">
         Time Left: <span id="timer"></span>
     </div>
@@ -103,24 +109,17 @@
     </form>
 </div>
 
-<!--  Countdown Script -->
+<!-- Countdown Timer Script -->
 <script>
-<<<<<<< HEAD
-    // Safely get totalQuestions from server, fallback 10 if null
-    let totalQuestions = <c:out value="${totalQuestions}" default="0"/>;
-    let totalTime = totalQuestions > 0 ? totalQuestions * 60 : 600; // default 10 min
-=======
-    // Controller should pass totalQuestions as model attribute
-    let totalQuestions = ${totalQuestions};  // Example: 20
-    let totalTime = totalQuestions * 60;     // 1 min per question = seconds
->>>>>>> c67732417996278d18b127d5313edc74a1766b0e
+    // Safely get totalQuestions from server, fallback to 10
+    let totalQuestions = <c:out value="${totalQuestions}" default="10"/>;
+    let totalTime = totalQuestions * 60; // total seconds
 
     let timerElement = document.getElementById("timer");
     let examForm = document.getElementById("examForm");
 
     function startTimer(duration) {
         let time = duration;
-
         let interval = setInterval(() => {
             let minutes = Math.floor(time / 60);
             let seconds = time % 60;
@@ -137,7 +136,6 @@
         }, 1000);
     }
 
-    // Start timer when page loads
     window.onload = function() {
         startTimer(totalTime);
     };
