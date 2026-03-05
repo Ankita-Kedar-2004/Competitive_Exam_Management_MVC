@@ -74,7 +74,7 @@
                     </div>
                       <div class="col">
                         <label>Exam Name</label>
-                        <input type="text" name="examId" class="form-control" value="${question.examName}" required />
+                        <input type="text" name="examName" class="form-control" value="${question.examName}" required />
                     </div>
                 </div>
                 </div>

@@ -48,7 +48,7 @@
         </div>
 
         <div class="card-body">
-            <form action="${pageContext.request.contextPath}/student_update" method="post">
+            <form action="${pageContext.request.contextPath}/student/student_update" method="post">
                 <input type="hidden" name="id" value="${student.id}" />
                 <div class="row g-3 mb-3">
                     <div class="col-md-6">
@@ -63,10 +63,12 @@
                         <label class="form-label">Email</label>
                         <input type="email" name="email" class="form-control" value="${student.email}" required>
                     </div>
-                    <div class="col-md-6">
+   
+  <div class="col-md-6">
                         <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" value="${student.password}" required>
                     </div>
+
                     <div class="col-md-6">
                         <label class="form-label">Qualification</label>
                         <select name="qualification" class="form-select" required>
@@ -91,17 +93,23 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Exam ID</label>
-                        <input type="text" name="examId" class="form-control" value="${student.examId}">
-                    </div>
+                    
+           <div class="col-md-6">
+    <label class="form-label">Status</label>
+    <select id="status" name="status" class="form-select shadow-sm" required>
+        <option value="">-- Select Status --</option>
+        <option value="Active ${student.status == 'Active' ? 'selected' : ''}">Active</option>
+        <option value="Inactive" ${student.status == 'Inactive' ? 'selected' : ''}">Inactive</option>
+    </select>
+</div>
+                
                 </div>
 
                 <!-- Bottom action buttons -->
-                <div class="text-center">
+                <div class="text-center mt-3">
                     <button type="submit" class="btn btn-success px-4">Update</button>
-                    <a href="${pageContext.request.contextPath}/student_view" class="btn btn-secondary px-4 ms-2">Back</a>
-                    <a href="${pageContext.request.contextPath}/student_registration" class="btn btn-primary px-4 ms-2">Add Student</a>
+                    <a href="${pageContext.request.contextPath}/student/student_view" class="btn btn-secondary px-4 ms-2">Back</a>
+                    <a href="${pageContext.request.contextPath}/student/student_registration" class="btn btn-primary px-4 ms-2">Add Student</a>
                 </div>
             </form>
         </div>

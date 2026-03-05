@@ -18,12 +18,11 @@
     body {
       margin: 0;
       padding: 0;
-      background-image: url('/resources/assets/images/login.jpg'); /* Adjust the path */
+      background-image: url('/resources/assets/images/Login.jpeg'); /* Adjust the path */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
-
     .overlay-dark {
       position: absolute;
       top: 0;
@@ -80,7 +79,7 @@
   <div class="overlay-dark"></div>
 
   <div class="form-container">
-    <form id="login-form"  action="login" method="get">
+    <form id="login-form"  action="/user/login" method="get">
       <div class="text-center mb-3">
         <h3 class="fw-bold">Login</h3>
       </div>
@@ -103,7 +102,7 @@
 
       <div class="text-center">
         <button type="submit" class="btn btn-primary btn-custom">Login</button>
-        <a href="sign_up" class="btn btn-outline-primary btn-custom ms-2">Sign Up</a>
+        <a href="/user/sign_up" class="btn btn-outline-primary btn-custom ms-2">Sign Up</a>
       </div>
     </form>
   </div>

@@ -1,55 +1,84 @@
 package com.competitive_exam_management.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import com.competitive_exam_management.Dto.QuestionsResponseDto;
+import com.competitive_exam_management.Dto.ResultRespDto;
+
+//import com.competitive_exam_management.Dto.QuestionsResponseDto;
+//import com.competitive_exam_management.Dto.ResultRespDto;
 
 import ServicesInterface.AssignQuestionsInterface;
 import ServicesInterface.ResultInterface;
 
 @Controller
 @RequestMapping("/result")
+@SessionAttributes("questions")  
 public class ResultController {
 	
 	@Autowired
 	private ResultInterface resultInterface;
 	
-	@Autowired
-	private AssignQuestionsInterface assignQuestionsInterface;
-	
 	@PostMapping("/submitExam")
-	public String viewResult( @RequestParam("studentId") int studentId,@RequestParam("examId") int examId, @RequestParam Map<String, String> allParams,Model model)
-	{
-		Map<Integer, String> answers = new HashMap<>();
+	public String viewResult(@RequestParam("studentId") int studentId,
+	                         @RequestParam("examId") int examId,
+	                         @RequestParam Map<String, String> allParams,
+	                         Model model) {
+
+	    Map<Integer, String> answers = new LinkedHashMap<>();
+	    System.out.println("HiIiiiiiiiiii");
+	    System.out.println(studentId);
+
 	    for (Map.Entry<String, String> entry : allParams.entrySet()) {
 	        if (entry.getKey().startsWith("answers[")) {
 	            String qIdStr = entry.getKey().substring(8, entry.getKey().length() - 1);
 	            int qId = Integer.parseInt(qIdStr);
-	            answers.put(qId, entry.getValue()); 
+	            answers.put(qId, entry.getValue());
 	        }
 	    }
-	    int score = resultInterface.evaluateExam(studentId, examId, answers);
-	    
-	    
-	    List<QuestionsResponseDto> assignQuestions = assignQuestionsInterface.assignQuestions(studentId, examId);
-	    for (QuestionsResponseDto q : assignQuestions) {
-	        String studentAnswer = answers.get(q.getQuestionId());
-	        if(studentAnswer == null) studentAnswer = "Not Answered"; 
-	        q.setStudentAnswer(studentAnswer);
+
+	    ResultRespDto examResult = resultInterface.evaluateExam(studentId, examId, answers);
+
+	    if (examResult == null) {
+	        model.addAttribute("error", "Result calculation failed.");
+	        return "ErrorPage";
 	    }
-	    
-	    
-         model.addAttribute("score", score);
-         model.addAttribute("questions", assignQuestions);
+
+	    model.addAttribute("score", examResult.getScore());
+	    model.addAttribute("question", examResult.getQuestions());
+	    model.addAttribute("answers", answers);
+
 	    return "ExamResult";
-}
+	}
+
+//	@GetMapping("/viewAllResult")
+//	public String viewResult( Model model,HttpSession session) {
+//		String role=(String) session.getAttribute("userRole");
+//		
+//            
+//            if("Student".equals(role)) {
+//            	String userIdStr = (String) session.getAttribute("userId");
+//        		int id = Integer.parseInt(userIdStr);
+//            	List<ResultRespDto> result=resultInterface.viewResultById(id);
+//            	model.addAttribute("result",result);
+//            }
+//            else {
+//            	List<ResultRespDto> result=resultInterface.viewResult();  
+//            	model.addAttribute("result",result);
+//            }
+//       
+//        return "ViewAllResults";
+//}
+	
 }

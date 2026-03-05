@@ -62,14 +62,22 @@
         <div class="col-sm-8">
             <input type="number" class="form-control" id="examDuration" name="examDuration" value="${exam.examDuration}"  required min="1" />
         </div>
+        
+        <div class="mb-3">
+                        <select id="status" name="status" class="form-select shadow-sm" required>
+        <option value="">-- Select Status --</option>
+        <option value="Active ${student.status == 'Active' ? 'selected' : ''}">Active</option>
+        <option value="Inactive" ${student.status == 'Inactive' ? 'selected' : ''}">Inactive</option>
+    </select>
+                </div>
     </div>
                 
 
                 <!-- Action Buttons -->
                 <div class="text-center">
                     <button type="submit" class="btn btn-success px-4">Update</button>
-                    <a href="${pageContext.request.contextPath}/Exam_View" class="btn btn-secondary px-4 ms-2">Back</a>
-                    <a href="${pageContext.request.contextPath}/addExam" class="btn btn-primary px-4 ms-2">Add New Exam</a>
+                    <a href="${pageContext.request.contextPath}/exam/Exam_View" class="btn btn-secondary px-4 ms-2">Back</a>
+                    <a href="${pageContext.request.contextPath}/exam/addExam" class="btn btn-primary px-4 ms-2">Add New Exam</a>
                 </div>
             </form>
         </div>

@@ -117,4 +117,11 @@ public class StudentServicesImpl implements StudentInterface {
 	}
 
 
+@Override
+public StudentDto studentProfieData(String userEmail) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
 }

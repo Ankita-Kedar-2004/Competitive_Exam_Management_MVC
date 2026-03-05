@@ -66,7 +66,10 @@ public class QuestionsController {
 	
 	@PostMapping("/questions_update_data")
 	public String questionsUpdateData(@ModelAttribute QuestionsDto questionsDto, RedirectAttributes redirectAttributes) {
+		System.out.println("Hii");
+		System.out.println(questionsDto.getCorrectAnswer());
 	    questionsInterface.questionsUpdate(questionsDto); 
+	    System.out.println("method");
 	    redirectAttributes.addFlashAttribute("successMsg", "Question Updated Successfully!");
 	    return "redirect:/question/viewQuestions";
 	}

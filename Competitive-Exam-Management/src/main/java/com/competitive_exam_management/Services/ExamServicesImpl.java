@@ -95,4 +95,10 @@ public class ExamServicesImpl implements ExamInterface{
 			return null;
 	}
 
+	@Override
+	public void deleteExamById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

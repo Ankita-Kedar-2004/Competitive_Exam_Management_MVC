@@ -51,7 +51,7 @@
             </div>
             <div class="card-body">
 
-                <!-- Search and Filter -->
+                <!-- Search and Status Filter -->
                 <div class="row mb-3">
                     <div class="col-md-4">
                         <input type="text" id="studentSearch" class="form-control shadow-sm" placeholder="Search student..." />
@@ -82,12 +82,10 @@
                                 <th>Qualification</th>
                                 <th>College</th>
                                 <th>Passing Year</th>
-                                <th>Exam ID</th>
                                 <th colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody id="studentTableBody">
-                            <!-- AJAX data loads here -->
                             <c:if test="${empty students}">
                                 <tr><td colspan="10" class="no-data">No student data found</td></tr>
                             </c:if>
@@ -108,11 +106,12 @@
     </div>
 </c:if>
 
-<!-- Scripts -->
+<!-- JQuery + Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+    // Success message auto hide
     setTimeout(() => {
         const alertBox = document.getElementById('delayedAlert');
         if (alertBox) {
@@ -126,6 +125,7 @@
     $(document).ready(function () {
         const contextPath = '${pageContext.request.contextPath}';
 
+        // Load students by status
         function loadStudentsByStatus(status) {
             if (!status) {
                 $('#studentTableBody').html('');
@@ -133,7 +133,7 @@
             }
 
             $.ajax({
-                url: contextPath + 'http://localhost:8282/student/student_view/' + status,
+                url: 'http://localhost:8282/student/student_view/' + status,
                 method: 'GET',
                 dataType: 'json',
                 success: function (response) {
@@ -149,7 +149,6 @@
                                     <td>\${student.qualification || ''}</td>
                                     <td>\${student.collegeName || ''}</td>
                                     <td>\${student.passingYear || ''}</td>
-                                    <td>\${student.examId || ''}</td>
                                     <td>
                                         <a href='\${contextPath}/student/student_update/\${student.id}' class='btn btn-sm btn-warning'>
                                             <i class='bi bi-pencil-square'></i>
@@ -169,7 +168,7 @@
                         rows = `<tr><td colspan='10' class='no-data text-center'>No student data found</td></tr>`;
                     }
                     $('#studentTableBody').html(rows);
-                    $('#studentSearch').trigger('input');
+                    $('#studentSearch').trigger('input'); // reapply filter
                 },
                 error: function () {
                     $('#studentTableBody').html(`<tr><td colspan='10' class='no-data text-center'>Error loading data</td></tr>`);
@@ -177,6 +176,7 @@
             });
         }
 
+        // Filter table rows by search text
         function filterStudents(keyword) {
             keyword = keyword.toLowerCase();
             $('#studentTableBody tr').each(function () {
@@ -185,11 +185,13 @@
             });
         }
 
+        // Trigger filter on keyup/input
         $('#studentSearch').on('keyup input', function () {
             const keyword = $(this).val();
             filterStudents(keyword);
         });
 
+        // Status filter change
         $('#studentStatus').on('change', function () {
             const selectedStatus = $(this).val();
             loadStudentsByStatus(selectedStatus);

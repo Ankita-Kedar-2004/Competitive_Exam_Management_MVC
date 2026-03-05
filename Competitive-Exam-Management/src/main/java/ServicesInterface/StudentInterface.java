@@ -21,4 +21,6 @@ public interface StudentInterface {
 	 
 	 public StudentDto deleteStudentById(int id);
 
+	public StudentDto studentProfieData(String userEmail);
+
 }

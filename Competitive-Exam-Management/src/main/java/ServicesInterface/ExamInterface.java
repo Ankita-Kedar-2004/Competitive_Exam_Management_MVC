@@ -18,4 +18,6 @@ public interface ExamInterface {
 
 	ExamDto examUpdate(ExamDto examDto);
 
+	void deleteExamById(int id);
+
 }
